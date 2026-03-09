@@ -17,13 +17,22 @@
       <h1 class="title">Galaxy Slots</h1>
       <p class="subtitle">across the universe</p>
 
+      <!-- Mode selector -->
+      <div class="coins-select">
+         <label class="coins-label">Mode:</label>
+         <div class="coins-options">
+            <button class="coin-btn mode-btn active" data-mode="solo">🚀 Solo</button>
+            <button class="coin-btn mode-btn" data-mode="2p">👥 2 Players</button>
+         </div>
+      </div>
+
       <div class="name-fields">
          <div class="name-field">
-            <label class="name-label p1-color">⭐ Player 1</label>
+            <label class="name-label p1-color" id="p1Label">⭐ Player 1</label>
             <input class="name-input" id="p1Name" type="text" placeholder="Your name..." maxlength="16"/>
          </div>
-         <div class="vs-divider">🌙</div>
-         <div class="name-field">
+         <div class="vs-divider" id="vsDivider" style="display:none">🌙</div>
+         <div class="name-field" id="p2Field" style="display:none">
             <label class="name-label p2-color">🌟 Player 2</label>
             <input class="name-input" id="p2Name" type="text" placeholder="Your name..." maxlength="16"/>
          </div>
@@ -60,8 +69,8 @@
          <p class="goal-display" id="goalDisplay">First to 500 ⚡ wins!</p>
       </div>
 
-      <!-- Scoreboard -->
-      <div class="scoreboard">
+      <!-- Scoreboard (2-player) -->
+      <div class="scoreboard" id="scoreboardMulti">
          <div class="player-card" id="p1Card">
             <div class="player-avatar p1-bg">⭐</div>
             <div class="player-info">
@@ -76,6 +85,22 @@
                <span class="player-coins" id="p2Coins">50 ⚡</span>
             </div>
             <div class="player-avatar p2-bg">🌟</div>
+         </div>
+      </div>
+
+      <!-- Scoreboard (solo) -->
+      <div class="scoreboard solo-board hidden" id="scoreboardSolo">
+         <div class="player-card">
+            <div class="player-avatar p1-bg">⭐</div>
+            <div class="player-info">
+               <span class="player-name" id="soloNameDisplay">Player</span>
+               <span class="player-coins" id="soloCoins">50 ⚡</span>
+            </div>
+         </div>
+         <div class="solo-stats">
+            <div class="solo-stat"><span class="stat-label">SPINS</span><span class="stat-value" id="soloSpins">0</span></div>
+            <div class="solo-stat"><span class="stat-label">BEST WIN</span><span class="stat-value" id="soloBestWin">0</span></div>
+            <div class="solo-stat"><span class="stat-label">GOAL</span><span class="stat-value goal-val" id="soloGoal">500</span></div>
          </div>
       </div>
 
