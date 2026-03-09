@@ -1,1 +1,1 @@
-https://barone-ng.github.io/Barone-website/
+https://barone-website.vercel.app/
