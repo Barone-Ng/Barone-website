@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Galaxy Slots 🌙</title>
+   <link rel="stylesheet" href="SlotMachine.css">
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- NAME SCREEN -->
+<div class="screen" id="nameScreen">
+   <div class="name-card">
+      <div class="title-icon">🌌</div>
+      <h1 class="title">Galaxy Slots</h1>
+      <p class="subtitle">across the universe</p>
+
+      <div class="name-fields">
+         <div class="name-field">
+            <label class="name-label p1-color">⭐ Player 1</label>
+            <input class="name-input" id="p1Name" type="text" placeholder="Your name..." maxlength="16"/>
+         </div>
+         <div class="vs-divider">🌙</div>
+         <div class="name-field">
+            <label class="name-label p2-color">🌟 Player 2</label>
+            <input class="name-input" id="p2Name" type="text" placeholder="Your name..." maxlength="16"/>
+         </div>
+      </div>
+
+      <div class="coins-select">
+         <label class="coins-label">Starting credits each:</label>
+         <div class="coins-options">
+            <button class="coin-btn active" data-coins="50">50 ⚡</button>
+            <button class="coin-btn" data-coins="100">100 ⚡</button>
+            <button class="coin-btn" data-coins="200">200 ⚡</button>
+         </div>
+      </div>
+
+      <div class="coins-select">
+         <label class="coins-label">Difficulty:</label>
+         <div class="coins-options">
+            <button class="diff-btn active" data-goal="500">🌙 Easy <span class="goal-hint">(first to 500)</span></button>
+            <button class="diff-btn" data-goal="1000">🌌 Hard <span class="goal-hint">(first to 1000)</span></button>
+         </div>
+      </div>
+
+      <button class="start-btn" id="startBtn">🚀 Launch Game</button>
+      <p class="name-error" id="nameError"></p>
+   </div>
+</div>
+
+<!-- GAME SCREEN -->
+<div class="screen hidden" id="gameScreen">
+   <div class="container">
+
+      <div class="game-header">
+         <h1 class="title small">🌌 Galaxy Slots</h1>
+         <p class="goal-display" id="goalDisplay">First to 500 ⚡ wins!</p>
+      </div>
+
+      <!-- Scoreboard -->
+      <div class="scoreboard">
+         <div class="player-card" id="p1Card">
+            <div class="player-avatar p1-bg">⭐</div>
+            <div class="player-info">
+               <span class="player-name" id="p1NameDisplay">Player 1</span>
+               <span class="player-coins" id="p1Coins">50 ⚡</span>
+            </div>
+         </div>
+         <div class="turn-indicator" id="turnIndicator">Your Turn!</div>
+         <div class="player-card" id="p2Card">
+            <div class="player-info right">
+               <span class="player-name" id="p2NameDisplay">Player 2</span>
+               <span class="player-coins" id="p2Coins">50 ⚡</span>
+            </div>
+            <div class="player-avatar p2-bg">🌟</div>
+         </div>
+      </div>
+
+      <!-- Slot Machine -->
+      <div class="machine">
+         <div class="machine-top">
+            <span class="machine-title">✦ GALAXY SLOTS ✦</span>
+         </div>
+
+         <div class="reels-window">
+            <div class="reel-container"><div class="reel" id="reel0"></div></div>
+            <div class="reel-sep">✦</div>
+            <div class="reel-container"><div class="reel" id="reel1"></div></div>
+            <div class="reel-sep">✦</div>
+            <div class="reel-container"><div class="reel" id="reel2"></div></div>
+         </div>
+
+         <div class="win-line"></div>
+         <div class="result-msg" id="resultMsg">Ready for launch? 🚀</div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+         <div class="bet-row">
+            <span class="bet-label">Bet:</span>
+            <button class="bet-adj" id="betDown">−</button>
+            <span class="bet-amount" id="betDisplay">5</span>
+            <button class="bet-adj" id="betUp">+</button>
+            <span class="bet-label">⚡</span>
+         </div>
+         <div class="bet-quick">
+            <button class="bet-quick-btn minus" data-amount="-50">−50</button>
+            <button class="bet-quick-btn minus" data-amount="-10">−10</button>
+            <button class="bet-quick-btn" data-amount="10">+10</button>
+            <button class="bet-quick-btn" data-amount="50">+50</button>
+            <button class="bet-quick-btn" data-amount="100">+100</button>
+            <button class="bet-quick-btn" data-amount="allin">ALL IN 🚀</button>
+         </div>
+         <button class="spin-btn" id="spinBtn">🚀 LAUNCH!</button>
+      </div>
+
+      <!-- Paytable -->
+      <button class="paytable-btn" id="paytableBtn">🔭 Paytable</button>
+      <div class="paytable hidden" id="paytable">
+         <div class="paytable-row"><span>🌌🌌🌌</span><span>SUPERNOVA × 20</span></div>
+         <div class="paytable-row"><span>🪐🪐🪐</span><span>× 15</span></div>
+         <div class="paytable-row"><span>☄️☄️☄️</span><span>× 12</span></div>
+         <div class="paytable-row"><span>🌙🌙🌙</span><span>× 10</span></div>
+         <div class="paytable-row"><span>Any 3 match</span><span>× 8</span></div>
+         <div class="paytable-row"><span>Any 2 match</span><span>× 2</span></div>
+         <div class="paytable-row"><span>No match</span><span>Lose bet</span></div>
+      </div>
+
+      <button class="menu-btn" id="menuBtn">🏠 Main Menu</button>
+   </div>
+</div>
+
+<!-- END MODAL -->
+<div class="modal-overlay" id="endModal">
+   <div class="modal">
+      <div class="modal-emoji" id="endEmoji">🏆</div>
+      <h2 class="modal-title" id="endTitle">Game Over!</h2>
+      <p class="modal-msg" id="endMsg"></p>
+      <div class="final-scores" id="endScores"></div>
+      <div class="modal-buttons">
+         <button class="start-btn small" id="playAgainBtn">🚀 Play Again</button>
+         <button class="start-btn small outline" id="endMenuBtn">🏠 Main Menu</button>
+      </div>
+   </div>
+</div>
+
+<script src="SlotMachine.js"></script>
+</body>
+</html>

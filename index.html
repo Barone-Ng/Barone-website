@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bao's Website</title>
     <link rel="stylesheet" href="design.css">
-    
+
 </head>
 <body>
     <div class="card">
@@ -18,15 +18,110 @@
             <button id="btn3">Fun stuff</button>
         </div>
         
+        <!-- POPUP 1 - Info -->
         <div class="popup" id="popup1">
-            <div class="popup-content">
+            <div class="popup-content" style="
+                width: min(92vw, 420px);
+                max-height: 85vh;
+                overflow-y: auto;
+                padding: 0;
+                border-radius: 16px;
+                border-top: 12px solid rgb(54,54,54);
+                background: white;
+                display: flex;
+                flex-direction: column;
+            ">
                 <span class="close-btn">&times;</span>
-                <h3>Info</h3>
-                <p>Name: Bao Nguyen</p>
-                <p>DoB: 01/22/2004</p>
+
+                <!-- Header banner -->
+                <div style="background: linear-gradient(135deg, #ff7e5f, #feb47b); padding: 28px 28px 20px; text-align: center;">
+                    <div style="font-size: 3.2rem; margin-bottom: 10px;">🎮</div>
+                    <h2 style="font-family: monospace; color: white; font-size: 1.3rem; margin: 0;">Bao Nguyen</h2>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.78rem; margin-top: 4px; font-family: monospace;">// Early Access Web Developer</p>
+                    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.2);border-radius:30px;padding:4px 12px;margin-top:10px;font-size:0.72rem;color:white;">
+                        <span style="width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;animation:blink 2s infinite;"></span>
+                        Available for new projects
+                    </div>
+                </div>
+
+                <!-- Body -->
+                <div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 18px;">
+
+                    <!-- About -->
+                    <div>
+                        <div style="font-family:monospace;font-size:0.65rem;color:#ff7e5f;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+                            About <span style="flex:1;height:1px;background:#eee;display:block;"></span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:0.85rem;">
+                            <span style="color:#999;">Full name</span><span style="font-weight:600;">Bao Nguyen</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:0.85rem;">
+                            <span style="color:#999;">Date of birth</span><span style="font-weight:600;">Jan 22, 2004</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:0.85rem;">
+                            <span style="color:#999;">Temporary Location:</span><span style="font-weight:600;">Orlando, Florida, US</span>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div>
+                        <div style="font-family:monospace;font-size:0.65rem;color:#ff7e5f;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+                            Education <span style="flex:1;height:1px;background:#eee;display:block;"></span>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                            <div style="width:36px;height:36px;border-radius:10px;background:rgba(255,126,95,0.1);border:1px solid rgba(255,126,95,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">🏛️</div>
+                            <div>
+                                <div style="font-weight:600;font-size:0.85rem;">University of Central Florida</div>
+                                <div style="color:#999;font-size:0.75rem;margin-top:1px;">UCF — Computer Science</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:8px 0;">
+                            <div style="width:36px;height:36px;border-radius:10px;background:rgba(255,126,95,0.1);border:1px solid rgba(255,126,95,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">📚</div>
+                            <div>
+                                <div style="font-weight:600;font-size:0.85rem;">Valencia College</div>
+                                <div style="color:#999;font-size:0.75rem;margin-top:1px;">Associate of Arts</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interests -->
+                    <div>
+                        <div style="font-family:monospace;font-size:0.65rem;color:#ff7e5f;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+                            Interests <span style="flex:1;height:1px;background:#eee;display:block;"></span>
+                        </div>
+                        <div style="display:flex;flex-wrap:wrap;gap:7px;">
+                            <span style="background:#f5f5f5;border:1px solid #eee;border-radius:30px;padding:5px 13px;font-size:0.78rem;">🎮 Gaming</span>
+                            <span style="background:#f5f5f5;border:1px solid #eee;border-radius:30px;padding:5px 13px;font-size:0.78rem;">💻 Web Dev</span>
+                            <span style="background:#f5f5f5;border:1px solid #eee;border-radius:30px;padding:5px 13px;font-size:0.78rem;">🎵 J-Pop</span>
+                            <span style="background:#f5f5f5;border:1px solid #eee;border-radius:30px;padding:5px 13px;font-size:0.78rem;">🐒 Monkeys</span>
+                            <span style="background:#f5f5f5;border:1px solid #eee;border-radius:30px;padding:5px 13px;font-size:0.78rem;">🌙 Night coding</span>
+                        </div>
+                    </div>
+
+                    <!-- Social -->
+                    <div>
+                        <div style="font-family:monospace;font-size:0.65rem;color:#ff7e5f;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+                            Social <span style="flex:1;height:1px;background:#eee;display:block;"></span>
+                        </div>
+                        <a href="https://github.com/Barone-Ng" target="_blank" style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:#f8f8f8;border:1px solid #eee;text-decoration:none;color:#111;transition:all 0.2s;"
+                           onmouseover="this.style.borderColor='#ff7e5f';this.style.background='rgba(255,126,95,0.06)'"
+                           onmouseout="this.style.borderColor='#eee';this.style.background='#f8f8f8'">
+                            <div style="width:34px;height:34px;border-radius:9px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <svg width="17" height="17" viewBox="0 0 16 16" fill="#fff"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                            </div>
+                            <div style="flex:1;">
+                                <div style="font-weight:600;font-size:0.85rem;">GitHub</div>
+                                <div style="color:#999;font-size:0.75rem;">@Barone-Ng</div>
+                            </div>
+                            <span style="color:#bbb;font-size:0.8rem;">↗</span>
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
 
+        <!-- POPUP 2 - Projects -->
         <div class="popup" id="popup2">
             <div class="popup-content">
                 <span class="close-btn">&times;</span>
@@ -35,6 +130,7 @@
             </div>
         </div>
 
+        <!-- POPUP 3 - Fun stuff -->
         <div class="popup" id="popup3">
             <div class="popup-content">
                 <span class="close-btn">&times;</span>
@@ -42,16 +138,13 @@
                 <button onclick="window.open('LightOut.html', 'LightsOut', 'width=600,height=600')">🔦 Play Lights Out</button>
                 <button onclick="window.open('Tictactoe.html', 'TicTacToe', 'width=600,height=600')">❌ Play Tic-Tac-Toe</button>
                 <button onclick="window.open('MemoryMatch.html', 'MemoryMatch', 'width=600,height=600')">🧠 Play Love Match</button>
+                <button onclick="window.open('Slotmachine.html', 'SlotMachine', 'width=800,height=600')">🎰 Play Galaxy Slots</button>
             </div>
         </div>
-    
-        
-    
 
-    
-    
     </div>
-<!-- Shooting Star-->
+
+    <!-- Shooting Star -->
     <div class="stars-container">
         <div class="stars"></div>
         <div class="shooting-star"></div>
@@ -60,14 +153,16 @@
         <div class="shooting-star"></div>
         <div class="shooting-star"></div>
     </div>
-<!-- Gradient wave-->
+
+    <!-- Gradient wave -->
     <div class="wave-container">
         <div class="wave"></div>
         <div class="wave"></div>
         <div class="wave"></div>
     </div>
 
-        <button id="themeToggle" class="theme-btn"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABgElEQVR4AcSTMVLDMBBFbSpmGC5AQ2i4QA4A9FyACjgJ4Ro0ScfQUFFAldDR5AIUhKHgAhzAvJ+RlZUsx4oHJpn9kXal/U9ynJ3inz/bBVRVNUBjtEA3fS7begNnuMD0Cg2cGDaLJADzMTYjZOPTJrnzBgBznViKPV7jQk4eADDXo9DpG71lWc4axYxCAGD/JfrT8AB3+vi5e5hb93nuxANoOEXroms92WsBh8kdq2LX+mqnmVmAKSenoz6PyQL0BiWdTXEKZN/knVMLyHnPH3A82QRiAV3/1EfMP9ABugByjDpv4wHuj9QG+cL0BdnQWyXQOaBhJA/2ANc5cWM8PMcFk+tGQ/JYlIoiAHCLW6ptt2ApO97rnQHAFc8YY8icWm7MOeh3vbkBYFHmMWS3bugYZR4cpgGQgSDoiPk1EnCPcV38sPhET2BOLfwNVLCiYYIEeqOua8tIIi2U61nL+J59ylUPlLxBsIOE5imqjWR25/IZY9KYtmVkAZY7e379AgAA//+Ig8x+AAAABklEQVQDAADhdDEEz20xAAAAAElFTkSuQmCC" alt="icon" /></button>
-<script src="script.js"></script>    
+    <button id="themeToggle" class="theme-btn"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABgElEQVR4AcSTMVLDMBBFbSpmGC5AQ2i4QA4A9FyACjgJ4Ro0ScfQUFFAldDR5AIUhKHgAhzAvJ+RlZUsx4oHJpn9kXal/U9ynJ3inz/bBVRVNUBjtEA3fS7begNnuMD0Cg2cGDaLJADzMTYjZOPTJrnzBgBznViKPV7jQk4eADDXo9DpG71lWc4axYxCAGD/JfrT8AB3+vi5e5hb93nuxANoOEXroms92WsBh8kdq2LX+mqnmVmAKSenoz6PyQL0BiWdTXEKZN/knVMLyHnPH3A82QRiAV3/1EfMP9ABugByjDpv4wHuj9QG+cL0BdnQWyXQOaBhJA/2ANc5cWM8PMcFk+tGQ/JYlIoiAHCLW6ptt2ApO97rnQHAFc8YY8icWm7MOeh3vbkBYFHmMWS3bugYZR4cpgGQgSDoiPk1EnCPcV38sPhET2BOLfwNVLCiYYIEeqOua8tIIi2U61nL+J59ylUPlLxBsIOE5imqjWR25/IZY9KYtmVkAZY7e379AgAA//+Ig8x+AAAABklEQVQDAADhdDEEz20xAAAAAElFTkSuQmCC" alt="icon" /></button>
+
+    <script src="script.js"></script>    
 </body>
 </html>
