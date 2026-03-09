@@ -87,6 +87,8 @@ body {
 
 /* Button style */
 .card button {
+  display: block;
+  margin: 20px auto 0 auto;
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
