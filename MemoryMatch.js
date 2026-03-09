@@ -1,5 +1,11 @@
-// Love-themed emojis for the cards
-const EMOJIS = ["💖", "🌹", "💍", "🦋", "🌸", "💌", "🍓", "✨", "🌙", "🕊️", "🫶", "💐"];
+// Card emojis — one heart, rest are animals (monkey included!)
+const EMOJIS = [
+   "💖", "🐒", "🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼",
+   "🐨", "🐯", "🦁", "🐸", "🐵", "🙈", "🙉", "🙊", "🐔", "🐧",
+   "🐦", "🦆", "🦅", "🦉", "🦇", "🐺", "🐗", "🐴", "🦄", "🐝",
+   "🐛", "🦋", "🐌", "🐞", "🐜", "🦗", "🐢", "🐍", "🦎", "🦖",
+   "🦕", "🐙", "🦑", "🦐", "🦀", "🐡", "🐠", "🐟", "🐬", "🦈"
+];
 
 const LOVE_MESSAGES_WIN = [
    "Just like your love, unstoppable! 💕",
@@ -83,7 +89,7 @@ function updateScoreboard() {
 function renderGrid() {
    const grid = document.getElementById("gameGrid");
    grid.innerHTML = "";
-   const colClass = state.pairs <= 8 ? "cols-4" : "cols-6";
+   const colClass = state.pairs <= 8 ? "cols-4" : state.pairs <= 12 ? "cols-6" : "cols-10";
    grid.className = `game-grid ${colClass}`;
 
    state.cards.forEach((card, i) => {
