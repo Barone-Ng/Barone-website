@@ -327,10 +327,10 @@ popup-content.dragging {
 
 /* seperate dark mode styles */
 .stars-container {
-  display: none; /* hide stars initially, show in dark mode when toggled */
+  display: block; /* show stars by default (dark mode) */
 }
 .wave-container {
-  display: block; /* show wave in light mode */
+  display: none; /* hide waves by default (dark mode) */
 }
 
 .orange {

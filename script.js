@@ -1,3 +1,9 @@
+// Start in dark mode
+document.body.classList.add("dark");
+document.querySelector('.stars-container').style.display = "block";
+document.querySelector('.wave-container').style.display = "none";
+document.getElementById("themeToggle").innerHTML = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABiElEQVR4AbSVTW4CMQyFJ5WQeoXuYME9yqIcoxIna9Vj0AUHYUF3vUIlFun3Mob5iTNMkKj8GmM/+zkhMzw1D/6rEogxHmKMp5qZqgRo/GNgmWeZABMuS6UhhF0IYVPKe/FMANIJkQNrlakGZMfnCXyOO1O4Bm/g3SB/PeLp+EahpskEQu8YaLYEO6p0LCvWZ4P8jXIgHanVKQ6ls0zgkrLCLZ8XoGTKbY3rcooCsDU1yywrcl0BJtL5arpZ3SEtrAZ3aK4AlHSurDXm1iQB1MdP6EtNZ+Nea6xfuupJAIJ7xYjfa+ontNfUuWK/d3S+1lg/Xe9WwGmW1J34VMituRzRoJAJjgTOYK6drSbjuwLGSl+S+beWIrcowETa8p7OUztRbm9cqLllAv0rpkLwQZkm1JvyD1+Qf1AOaJDG6hSH0tlAAJIektcu3Xo0OYJv8GWQr++pJUz8HwhQrGlWrMV3S6mXasDttykkibh92OH4iXd5/eBgB/1EwZe4UEjn4SoBdlf9m/wPAAD//0zXr04AAAAGSURBVAMAcK+YMec/0YcAAAAASUVORK5CYII=" alt="icon" />';
+
 const btn1 = document.getElementById("btn1");
 const btn2 = document.getElementById("btn2");
 const btn3 = document.getElementById("btn3");
