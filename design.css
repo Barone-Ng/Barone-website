@@ -792,7 +792,7 @@ body:not(.dark) .theme-btn {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    animation: albumSpin 8s linear infinite;
+    animation: albumSpin 12s linear infinite;
 }
 @keyframes albumSpin {
     from { transform: rotate(0deg); }
