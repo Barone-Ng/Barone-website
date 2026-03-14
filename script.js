@@ -313,31 +313,24 @@ function buildHeatmapFromEvents(grid, countEl, events) {
 }
 
 function buildHeatmapFallback(grid, countEl) {
-    // Generate a realistic-looking seeded pattern
     const map = {};
+    const start = new Date('2025-08-01');
     const today = new Date();
-    for (let i = 364; i >= 0; i--) {
-        const d = new Date(today);
-        d.setDate(d.getDate() - i);
+    for (let d = new Date(start); d <= today; d.setDate(d.getDate() + 1)) {
         const key = d.toISOString().slice(0, 10);
-        // seeded pseudo-random using date hash
         const seed = d.getDate() * 7 + d.getMonth() * 31;
         const r = ((seed * 1103515245 + 12345) & 0x7fffffff) % 100;
         map[key] = r < 55 ? 0 : r < 70 ? 1 : r < 82 ? 2 : r < 92 ? 4 : 6;
     }
-    const max = 6;
-    renderGrid(grid, map, max);
+    renderGrid(grid, map, 6);
     if (countEl) countEl.textContent = 'activity overview';
 }
 
 function renderGrid(grid, map, max) {
     grid.innerHTML = '';
 
-    // Build 52 weeks of columns, each 7 days
+    const start = new Date('2025-08-01');
     const today = new Date();
-    // Start on the Sunday 51 weeks ago
-    const start = new Date(today);
-    start.setDate(start.getDate() - (51 * 7) - start.getDay());
 
     const levelThresholds = (count, max) => {
         if (count === 0) return 0;
@@ -348,21 +341,31 @@ function renderGrid(grid, map, max) {
         return 4;
     };
 
-    for (let week = 0; week < 52; week++) {
+    // Rewind start to the nearest Sunday on or before Aug 1
+    const startSunday = new Date(start);
+    startSunday.setDate(startSunday.getDate() - startSunday.getDay());
+
+    // Count how many weeks from startSunday to today
+    const msPerWeek = 7 * 24 * 60 * 60 * 1000;
+    const totalWeeks = Math.ceil((today - startSunday) / msPerWeek) + 1;
+
+    for (let week = 0; week < totalWeeks; week++) {
         const col = document.createElement('div');
         col.className = 'gh-contrib-col';
 
         for (let day = 0; day < 7; day++) {
-            const d = new Date(start);
-            d.setDate(start.getDate() + week * 7 + day);
-            if (d > today) {
-                // empty placeholder to keep grid shape
+            const d = new Date(startSunday);
+            d.setDate(startSunday.getDate() + week * 7 + day);
+
+            // Skip days before Aug 1 2025 or after today
+            if (d < start || d > today) {
                 const empty = document.createElement('div');
                 empty.className = 'gh-contrib-cell';
                 empty.style.visibility = 'hidden';
                 col.appendChild(empty);
                 continue;
             }
+
             const key   = d.toISOString().slice(0, 10);
             const count = map[key] || 0;
             const level = levelThresholds(count, max);
@@ -372,11 +375,9 @@ function renderGrid(grid, map, max) {
             cell.dataset.count = count;
             if (count > 0) cell.dataset.level = level;
 
-            // tooltip on hover via title
             const label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             cell.title = count === 0 ? 'No contributions on ' + label : count + ' contribution' + (count > 1 ? 's' : '') + ' on ' + label;
 
-            // staggered pop-in animation
             cell.style.opacity = '0';
             cell.style.transform = 'scale(0)';
             const delay = (week * 7 + day) * 2;
