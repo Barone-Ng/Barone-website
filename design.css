@@ -940,3 +940,122 @@ body:not(.dark) .theme-btn {
     height: 9px;
     border-radius: 2px;
 }
+/* ─── Fun stuff popup ────────────────────────────────── */
+.popup-fun {
+    width: min(92vw, 360px);
+    cursor: default;
+}
+.popup-fun h3 {
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.fun-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.fun-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 14px 14px 12px;
+    border-radius: 12px;
+    border: 1.5px solid #e8e8e8;
+    background: #f9f9f9;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+    min-height: 80px;
+}
+.fun-btn:hover {
+    background: #ff7e5f;
+    border-color: #ff7e5f;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(255,126,95,0.35);
+}
+.fun-btn:hover .fun-arrow { opacity: 1; }
+.fun-btn:hover .fun-badge { background: white; color: #ff7e5f; }
+
+.fun-icon { font-size: 1.4rem; line-height: 1; }
+
+.fun-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.2;
+    flex: 1;
+}
+
+.fun-arrow {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 0.75rem;
+    opacity: 0.3;
+    transition: opacity 0.2s;
+}
+
+.fun-btn-new {
+    border-color: #ffb8a0;
+    background: rgba(255,126,95,0.06);
+}
+
+.fun-badge {
+    font-size: 0.58rem;
+    background: #ff7e5f;
+    color: white;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+}
+
+/* Dark mode */
+.dark .fun-btn {
+    background: #2a2a2a;
+    border-color: #3a3a3a;
+    color: #ddd;
+}
+.dark .fun-btn:hover {
+    background: #ff7e5f;
+    border-color: #ff7e5f;
+    color: white;
+}
+.dark .fun-btn-new {
+    border-color: rgba(255,126,95,0.4);
+    background: rgba(255,126,95,0.1);
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .card {
+        width: min(95vw, 420px);
+        height: auto;
+        min-height: 320px;
+        padding: 24px 20px 28px;
+        border-top-width: 28px;
+    }
+    .card h1 { font-size: 1.6rem; }
+    .card p  { font-size: 0.95rem; margin-top: 12px; }
+    .button-group {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 18px;
+    }
+    .card button { font-size: 0.9rem; padding: 9px 18px; margin: 0; }
+    .popup-info  { width: min(96vw, 420px); max-height: 90vh; }
+    .popup-fun   { width: min(92vw, 340px); }
+}
+@media (max-width: 400px) {
+    .fun-grid { grid-template-columns: 1fr; }
+    .card h1 { font-size: 1.35rem; }
+}
