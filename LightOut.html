@@ -1,43 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <title>Lights Out</title>
-      <style>
-         .grid3x3 {
-            display: grid;
-            grid-template-columns: 32px 32px 32px;
-            grid-template-rows: 32px 32px 32px;
-            grid-gap: 2px;
-            margin-bottom: 16px;
-         }
-         .grid5x5 {
-            display: grid;
-            grid-template-columns: 32px 32px 32px 32px 32px;
-            grid-template-rows: 32px 32px 32px 32px 32px;
-            grid-gap: 2px;
-            margin-bottom: 16px;
-         }
-         .lightOn {
-            border: 1px solid black;
-            background-color: yellow;
-            width: 100%;
-            height: 100%;
-         }
-         .lightOff {
-            border: 1px solid black;
-            background-color: black;
-            width: 100%;
-            height: 100%;
-         }
-      </style>
-      <script src="LightOut.js"></script>
-   </head>
-   <body>
-      <div id="gameGrid"></div>
-      <div id="information"></div>
-      <input id="newGame3x3Button" type="button" value="New game (3x3)">
-      <input id="newGame5x5Button" type="button" value="New game (5x5)">
-      <input id="solveForMeButton" type="button" value="Solve automatically">
-   </body>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lights Out</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+   <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+         --bg:          #111318;
+         --panel:       #1a1d24;
+         --panel2:      #1f2330;
+         --rim:         #2e3344;
+         --rim-bright:  #3d4460;
+         --on:          #f5c842;
+         --on-glow:     rgba(245, 200, 66, 0.7);
+         --on-core:     #fff8dc;
+         --off:         #1c1f2b;
+         --off-border:  #2a2f42;
+         --accent:      #4a9eff;
+         --accent-glow: rgba(74, 158, 255, 0.5);
+         --danger:      #ff4a4a;
+         --text:        #8a95b0;
+         --text-bright: #c8d0e8;
+         --mono:        'Share Tech Mono', monospace;
+         --display:     'Barlow Condensed', sans-serif;
+      }
+
+      body {
+         background: var(--bg);
+         color: var(--text-bright);
+         min-height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-family: var(--display);
+         overflow: hidden;
+         position: relative;
+      }
+
+      body::before {
+         content: '';
+         position: fixed; inset: 0;
+         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+         pointer-events: none; z-index: 0;
+      }
+
+      .machine {
+         position: relative; z-index: 1;
+         background: var(--panel);
+         border: 2px solid var(--rim);
+         border-radius: 16px;
+         padding: 28px 28px 24px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         gap: 22px;
+         box-shadow:
+            0 0 0 4px #0d0f14,
+            0 0 0 5px var(--rim),
+            0 32px 80px rgba(0,0,0,0.7),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+         min-width: 340px;
+      }
+
+      .machine-header {
+         width: 100%;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 16px;
+      }
+
+      .brand { display: flex; flex-direction: column; gap: 1px; }
+
+      .brand-title {
+         font-family: var(--display);
+         font-size: 1.6rem;
+         font-weight: 900;
+         letter-spacing: 4px;
+         text-transform: uppercase;
+         color: var(--text-bright);
+         line-height: 1;
+      }
+
+      .brand-sub {
+         font-family: var(--mono);
+         font-size: 0.58rem;
+         letter-spacing: 3px;
+         color: var(--text);
+         text-transform: uppercase;
+      }
+
+      .status-cluster {
+         display: flex;
+         flex-direction: column;
+         align-items: flex-end;
+         gap: 6px;
+      }
+
+      .led-row {
+         display: flex;
+         align-items: center;
+         gap: 8px;
+      }
+
+      .led-label {
+         font-family: var(--mono);
+         font-size: 0.58rem;
+         letter-spacing: 2px;
+         color: var(--text);
+         text-transform: uppercase;
+      }
+
+      .led {
+         width: 8px; height: 8px;
+         border-radius: 50%;
+         background: var(--off);
+         border: 1px solid var(--rim-bright);
+         transition: background 0.3s, box-shadow 0.3s;
+      }
+
+      .led.active {
+         background: var(--accent);
+         box-shadow: 0 0 6px var(--accent-glow), 0 0 12px var(--accent-glow);
+      }
+
+      .led.warn {
+         background: var(--on);
+         box-shadow: 0 0 6px var(--on-glow), 0 0 12px var(--on-glow);
+      }
+
+      .info-bar {
+         width: 100%;
+         background: var(--off);
+         border: 1px solid var(--off-border);
+         border-radius: 6px;
+         padding: 8px 14px;
+         font-family: var(--mono);
+         font-size: 0.75rem;
+         color: var(--accent);
+         letter-spacing: 1px;
+         min-height: 36px;
+         display: flex;
+         align-items: center;
+         gap: 8px;
+      }
+
+      .info-bar::before {
+         content: '>';
+         color: var(--rim-bright);
+         flex-shrink: 0;
+      }
+
+      .grid-panel {
+         background: #0d0f14;
+         border: 2px solid var(--rim);
+         border-radius: 10px;
+         padding: 16px;
+         box-shadow:
+            inset 0 2px 8px rgba(0,0,0,0.6),
+            inset 0 0 30px rgba(0,0,0,0.3);
+      }
+
+      #gameGrid {
+         display: grid;
+         gap: 8px;
+      }
+
+      #gameGrid.grid3x3 {
+         grid-template-columns: repeat(3, 64px);
+         grid-template-rows:    repeat(3, 64px);
+      }
+
+      #gameGrid.grid5x5 {
+         grid-template-columns: repeat(5, 52px);
+         grid-template-rows:    repeat(5, 52px);
+      }
+
+      .lightOn,
+      .lightOff {
+         width: 100%; height: 100%;
+         border-radius: 8px;
+         cursor: pointer;
+         border: none;
+         position: relative;
+         transition: transform 0.08s, box-shadow 0.15s;
+      }
+
+      .lightOn {
+         background: radial-gradient(circle at 40% 35%, var(--on-core), var(--on) 50%, #c9a020);
+         box-shadow:
+            0 0 12px var(--on-glow),
+            0 0 28px var(--on-glow),
+            inset 0 1px 0 rgba(255,255,255,0.5),
+            inset 0 -2px 4px rgba(0,0,0,0.3);
+      }
+
+      .lightOn:hover {
+         transform: scale(0.94);
+         box-shadow:
+            0 0 18px var(--on-glow),
+            0 0 40px var(--on-glow),
+            inset 0 1px 0 rgba(255,255,255,0.4);
+      }
+
+      .lightOff {
+         background: radial-gradient(circle at 40% 35%, #252b3a, var(--off));
+         box-shadow:
+            inset 0 2px 4px rgba(0,0,0,0.5),
+            inset 0 -1px 0 rgba(255,255,255,0.03);
+         border: 1px solid var(--off-border);
+      }
+
+      .lightOff:hover {
+         background: radial-gradient(circle at 40% 35%, #2e3548, #1c1f2b);
+         border-color: var(--rim-bright);
+         transform: scale(0.96);
+      }
+
+      .lightOn:active, .lightOff:active { transform: scale(0.88); }
+
+      .controls {
+         width: 100%;
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+      }
+
+      .btn-row { display: flex; gap: 8px; }
+
+      .btn {
+         flex: 1;
+         font-family: var(--display);
+         font-size: 0.72rem;
+         font-weight: 700;
+         letter-spacing: 2px;
+         text-transform: uppercase;
+         padding: 10px 14px;
+         border-radius: 6px;
+         cursor: pointer;
+         transition: all 0.15s;
+         border: 1px solid transparent;
+      }
+
+      .btn-primary {
+         background: var(--panel2);
+         border-color: var(--rim-bright);
+         color: var(--text-bright);
+         box-shadow: 0 2px 0 #0d0f14, inset 0 1px 0 rgba(255,255,255,0.05);
+      }
+
+      .btn-primary:hover {
+         border-color: var(--accent);
+         color: var(--accent);
+         box-shadow: 0 0 12px var(--accent-glow), 0 2px 0 #0d0f14;
+      }
+
+      .btn-primary:active { transform: translateY(2px); box-shadow: 0 0 8px var(--accent-glow); }
+
+      .btn-solve {
+         background: var(--panel2);
+         border-color: var(--rim-bright);
+         color: var(--danger);
+         box-shadow: 0 2px 0 #0d0f14, inset 0 1px 0 rgba(255,255,255,0.05);
+      }
+
+      .btn-solve:hover {
+         border-color: var(--danger);
+         box-shadow: 0 0 12px rgba(255,74,74,0.4), 0 2px 0 #0d0f14;
+      }
+
+      .btn-solve:active { transform: translateY(2px); }
+
+      .btn:disabled {
+         opacity: 0.35;
+         cursor: not-allowed;
+         transform: none !important;
+         box-shadow: 0 2px 0 #0d0f14 !important;
+      }
+
+      .ticker {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         width: 100%;
+         padding: 0 2px;
+      }
+
+      .ticker-item {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         gap: 2px;
+      }
+
+      .ticker-label {
+         font-family: var(--mono);
+         font-size: 0.52rem;
+         letter-spacing: 2px;
+         color: var(--text);
+         text-transform: uppercase;
+      }
+
+      .ticker-value {
+         font-family: var(--mono);
+         font-size: 1.1rem;
+         color: var(--text-bright);
+      }
+
+      .ticker-sep { width: 1px; height: 28px; background: var(--rim); }
+   </style>
+   <script src="LightOut.js"></script>
+</head>
+<body>
+   <div class="machine">
+
+      <div class="machine-header">
+         <div class="brand">
+            <div class="brand-title">Lights Out</div>
+            <div class="brand-sub">Control Panel v2</div>
+         </div>
+         <div class="status-cluster">
+            <div class="led-row">
+               <span class="led-label">PWR</span>
+               <div class="led active" id="ledPwr"></div>
+            </div>
+            <div class="led-row">
+               <span class="led-label">AUTO</span>
+               <div class="led" id="ledAuto"></div>
+            </div>
+            <div class="led-row">
+               <span class="led-label">WIN</span>
+               <div class="led" id="ledWin"></div>
+            </div>
+         </div>
+      </div>
+
+      <div class="info-bar" id="information">Ready. Start a new game.</div>
+
+      <div class="grid-panel">
+         <div id="gameGrid"></div>
+      </div>
+
+      <div class="ticker">
+         <div class="ticker-item">
+            <span class="ticker-label">Moves</span>
+            <span class="ticker-value" id="moveCount">0</span>
+         </div>
+         <div class="ticker-sep"></div>
+         <div class="ticker-item">
+            <span class="ticker-label">Mode</span>
+            <span class="ticker-value" id="modeDisplay">3×3</span>
+         </div>
+         <div class="ticker-sep"></div>
+         <div class="ticker-item">
+            <span class="ticker-label">Time</span>
+            <span class="ticker-value" id="timerDisplay">0s</span>
+         </div>
+      </div>
+
+      <div class="controls">
+         <div class="btn-row">
+            <button class="btn btn-primary" id="newGame3x3Button">New 3×3</button>
+            <button class="btn btn-primary" id="newGame5x5Button">New 5×5</button>
+         </div>
+         <button class="btn btn-solve" id="solveForMeButton">⚡ Auto-Solve</button>
+      </div>
+
+   </div>
+
+   <script>
+      let moveCount = 0;
+      let timerInterval = null;
+      let timerSeconds = 0;
+
+      function setLed(id, on, warn) {
+         const el = document.getElementById(id);
+         el.className = "led" + (on ? (warn ? " warn" : " active") : "");
+      }
+
+      function resetTicker(mode) {
+         moveCount = 0;
+         timerSeconds = 0;
+         document.getElementById("moveCount").textContent = "0";
+         document.getElementById("modeDisplay").textContent = mode;
+         document.getElementById("timerDisplay").textContent = "0s";
+         clearInterval(timerInterval);
+         timerInterval = setInterval(() => {
+            timerSeconds++;
+            document.getElementById("timerDisplay").textContent = timerSeconds + "s";
+         }, 1000);
+      }
+
+      function stopTimer() { clearInterval(timerInterval); }
+
+      document.addEventListener("DOMContentLoaded", () => {
+         document.getElementById("gameGrid").addEventListener("click", () => {
+            if (typeof currentGame !== "undefined" &&
+                !currentGame.autoSolveIntervalID &&
+                !allLightsOut(currentGame)) {
+               moveCount++;
+               document.getElementById("moveCount").textContent = moveCount;
+            }
+         });
+
+         document.getElementById("newGame3x3Button").addEventListener("click", () => {
+            resetTicker("3×3");
+            setLed("ledAuto", false);
+            setLed("ledWin", false);
+            document.getElementById("information").textContent = "New 3×3 game. Turn off all lights!";
+         });
+
+         document.getElementById("newGame5x5Button").addEventListener("click", () => {
+            resetTicker("5×5");
+            setLed("ledAuto", false);
+            setLed("ledWin", false);
+            document.getElementById("information").textContent = "New 5×5 game. Turn off all lights!";
+         });
+
+         document.getElementById("solveForMeButton").addEventListener("click", () => {
+            setLed("ledAuto", true);
+            document.getElementById("information").textContent = "Auto-solving in progress…";
+         });
+
+         // Poll for win state
+         setInterval(() => {
+            if (typeof currentGame !== "undefined" && allLightsOut(currentGame)) {
+               const wasWin = document.getElementById("ledWin").classList.contains("warn");
+               if (!wasWin) {
+                  setLed("ledWin", true, true);
+                  setLed("ledAuto", false);
+                  stopTimer();
+               }
+            }
+         }, 300);
+      });
+   </script>
+</body>
 </html>

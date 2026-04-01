@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Wordle — Ti en's Edition</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="Wordle.css">
+</head>
+<body>
+<div class="app">
+
+   <!-- HEADER -->
+   <header class="header">
+      <button class="icon-btn" id="helpBtn" title="How to play">?</button>
+      <div class="header-title">
+         <span class="title-main">WORDLE</span>
+         <span class="title-sub">Ti en's edition</span>
+      </div>
+      <div class="header-right">
+         <button class="lang-btn" id="langBtn" title="Switch language">🇺🇸 EN</button>
+         <div class="plays-badge">
+            <div class="plays-count"><span class="pc-num" id="playsLeft">2</span>/2</div>
+            <div class="plays-label" data-i18n="playsLabel">lượt hôm nay</div>
+         </div>
+      </div>
+   </header>
+
+   <!-- NO PLAYS SCREEN -->
+   <div class="no-plays-screen hidden" id="noPlaysScreen">
+      <div class="no-plays-card">
+         <div class="np-icon">🌙</div>
+         <h2 class="np-title" data-i18n="npTitle">quay lại vào ngày mai nhé keke</h2>
+         <p class="np-msg" data-i18n="npMsg">chịu, hết lượt chơi rồi ní.<br>tạm biệt nga, quay lại khi cái đồng hồ này đếm xong nè &#8595;</p>
+         <div class="np-countdown" id="npCountdown">00:00:00</div>
+      </div>
+   </div>
+
+   <!-- MAIN GAME -->
+   <main class="game-area" id="gameArea">
+      <div class="grid" id="grid"></div>
+      <div class="message-bar" id="messageBar"></div>
+      <div class="keyboard" id="keyboard">
+         <div class="kb-row" id="kbRow0"></div>
+         <div class="kb-row" id="kbRow1"></div>
+         <div class="kb-row" id="kbRow2"></div>
+      </div>
+   </main>
+
+</div>
+
+<!-- HOW TO PLAY MODAL -->
+<div class="modal-overlay hidden" id="helpModal">
+   <div class="modal">
+      <button class="modal-close" id="helpClose">✕</button>
+      <h2 class="modal-title" data-i18n="helpTitle">Hướng dẫn.... (không ai cần đọc cái này đâu he)</h2>
+      <p class="modal-desc" data-i18n="helpDesc">đoán 1 từ tiếng anh 5 chữ cái nhen.</p>
+      <div class="legend">
+         <div class="legend-row">
+            <div class="legend-tile correct">W</div>
+            <p data-i18n="legendCorrect"><strong>đúng nè</strong> — đúng chữ, đúng chỗ</p>
+         </div>
+         <div class="legend-row">
+            <div class="legend-tile present">I</div>
+            <p data-i18n="legendPresent"><strong>gần rồi</strong> — đúng chữ, sai chỗ</p>
+         </div>
+         <div class="legend-row">
+            <div class="legend-tile absent">U</div>
+            <p data-i18n="legendAbsent"><strong>èeeeee</strong> — sai gồi ní</p>
+         </div>
+      </div>
+      <div class="modal-rule">
+         <span class="rule-dot"></span>
+         <span data-i18n="helpRule">Bạn sẽ có <strong>2 lượt chơi mỗi ngày :></strong> quay lại vào ngày mai nếu hết lượt nhen</span>
+      </div>
+   </div>
+</div>
+
+<!-- WIN / LOSE MODAL -->
+<div class="modal-overlay hidden" id="resultModal">
+   <div class="modal result-modal">
+      <div class="result-emoji" id="resultEmoji">🎉</div>
+      <h2 class="result-title" id="resultTitle">Genius!</h2>
+      <p class="result-word" id="resultWord"></p>
+
+      <!-- VN Meaning card -->
+      <div class="meaning-card" id="meaningCard">
+         <div class="meaning-content" id="meaningContent">
+            <span class="meaning-word-en" id="meaningWordEn"></span>
+            <span class="meaning-arrow">→</span>
+            <span class="meaning-text" id="meaningText"></span>
+         </div>
+      </div>
+
+      <div class="result-stats" id="resultStats"></div>
+      <div class="result-btns">
+         <button class="btn-primary" id="nextGameBtn" data-i18n="btnNext">Chơi tiếp</button>
+         <button class="btn-ghost" id="resultMenuBtn" data-i18n="btnBack">Quay lại</button>
+      </div>
+      <div class="result-info" id="resultPlaysLeft"></div>
+   </div>
+</div>
+
+<script src="Wordle.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Sniper - Sakura Vocab</title>
+  <link rel="stylesheet" href="WordSniper.css">
+</head>
+<body class="light">
+  <div class="container">
+    <header>
+      <h1>🌸 Word Sniper</h1>
+      <div class="stats">
+        <div>Score: <span id="score">0</span></div>
+        <div>Streak: <span id="streak">1</span>x 🔥</div>
+        <div>Words: <span id="progress">0/0</span></div>
+      </div>
+    </header>
+
+    <div id="game-screen">
+      <div class="paragraph-box">
+        <p id="paragraph"></p>
+      </div>
+
+      <div class="question-area">
+        <h2>Word <span id="current-word-num">1</span>: <span id="target-word" class="highlight"></span></h2>
+        <div id="feedback" class="feedback"></div>
+        <div id="options" class="options"></div>
+      </div>
+    </div>
+
+    <div id="result-screen" class="hidden">
+      <h2 id="round-result"></h2>
+      <p id="final-score"></p>
+      <p id="powerup-message" class="powerup"></p>
+    </div>
+  </div>
+
+  <script src="WordSniper.js"></script>
+  <button onclick="localStorage.removeItem('wordSniperDaily'); location.reload();" style="position:fixed; bottom:12px; right:12px; opacity:0.15; font-size:0.7rem; padding:6px 12px; z-index:9999;">reset</button>
+</body>
+</html>

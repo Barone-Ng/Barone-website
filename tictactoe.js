@@ -1,6 +1,8 @@
 let playerTurn = true;
 let computerMoveTimeout = 0;
 
+const scores = { you: 0, cpu: 0, ties: 0 };
+
 const gameStatus = {
    MORE_MOVES_LEFT: 1,
    HUMAN_WINS: 2,
@@ -39,6 +41,10 @@ function checkForWinner() {
       if (buttons[indices[0]].innerHTML !== "" &&
          buttons[indices[0]].innerHTML === buttons[indices[1]].innerHTML &&
          buttons[indices[1]].innerHTML === buttons[indices[2]].innerHTML) {
+
+         // Highlight winning cells
+         indices.forEach(i => buttons[i].classList.add("winner"));
+
          if (buttons[indices[0]].innerHTML === "X") {
             return gameStatus.HUMAN_WINS;
          } else {
@@ -56,12 +62,22 @@ function checkForWinner() {
    return gameStatus.DRAW_GAME;
 }
 
+function updateScoreDisplay() {
+   document.getElementById("scoreYou").textContent = scores.you;
+   document.getElementById("scoreCpu").textContent = scores.cpu;
+   document.getElementById("scoreTies").textContent = scores.ties;
+}
+
+function setTurnInfo(text, cls) {
+   const el = document.getElementById("turnInfo");
+   el.textContent = text;
+   el.className = cls || "";
+}
+
 function newGame() {
-   // Clear computer's pending move
    clearTimeout(computerMoveTimeout);
    computerMoveTimeout = 0;
 
-   // Reset all buttons
    const buttons = getGameBoardButtons();
    for (let button of buttons) {
       button.textContent = "";
@@ -69,9 +85,8 @@ function newGame() {
       button.removeAttribute("disabled");
    }
 
-   // Player goes first
    playerTurn = true;
-   document.getElementById("turnInfo").textContent = "Your turn";
+   setTurnInfo("Your turn", "your-turn");
 }
 
 function boardButtonClicked(button) {
@@ -85,25 +100,30 @@ function boardButtonClicked(button) {
 
 function switchTurn() {
    const status = checkForWinner();
-   const turnInfo = document.getElementById("turnInfo");
 
    if (status === gameStatus.MORE_MOVES_LEFT) {
-      // Schedule computer move if switching to computer
       if (playerTurn) {
-         computerMoveTimeout = setTimeout(makeComputerMove, 1000);
+         computerMoveTimeout = setTimeout(makeComputerMove, 800);
       }
-      // Toggle turn
       playerTurn = !playerTurn;
-      turnInfo.textContent = playerTurn ? "Your turn" : "Computer's turn";
+      setTurnInfo(playerTurn ? "Your turn" : "CPU thinking…", playerTurn ? "your-turn" : "computer-turn");
    } else {
-      // Game over
       playerTurn = false;
+      // Disable all buttons
+      getGameBoardButtons().forEach(b => b.setAttribute("disabled", true));
+
       if (status === gameStatus.HUMAN_WINS) {
-         turnInfo.textContent = "You win!";
+         scores.you++;
+         updateScoreDisplay();
+         setTurnInfo("You win! 🎉", "win");
       } else if (status === gameStatus.COMPUTER_WINS) {
-         turnInfo.textContent = "Computer wins!";
+         scores.cpu++;
+         updateScoreDisplay();
+         setTurnInfo("CPU wins!", "computer-turn");
       } else {
-         turnInfo.textContent = "Draw game";
+         scores.ties++;
+         updateScoreDisplay();
+         setTurnInfo("Draw!", "draw");
       }
    }
 }
@@ -117,14 +137,11 @@ function makeComputerMove() {
       [0, 4, 8], [2, 4, 6]
    ];
 
-   // Check if a move can win or block for a given mark ("O" or "X")
    function findBestMove(mark) {
       for (let indices of possibilities) {
          const cells = indices.map(i => buttons[i]);
          const markCount = cells.filter(b => b.textContent === mark).length;
          const emptyCells = cells.filter(b => b.textContent === "");
-
-         // If two of the mark and one empty, that's the move
          if (markCount === 2 && emptyCells.length === 1) {
             return emptyCells[0];
          }
@@ -132,26 +149,13 @@ function makeComputerMove() {
       return null;
    }
 
-   // 1. Try to win
    let chosen = findBestMove("O");
-
-   // 2. Try to block player from winning
    if (!chosen) chosen = findBestMove("X");
-
-   // 3. Take center if available
-   if (!chosen && buttons[4].textContent === "") {
-      chosen = buttons[4];
-   }
-
-   // 4. Take a corner
+   if (!chosen && buttons[4].textContent === "") chosen = buttons[4];
    if (!chosen) {
       const corners = [0, 2, 6, 8].map(i => buttons[i]).filter(b => b.textContent === "");
-      if (corners.length > 0) {
-         chosen = corners[Math.floor(Math.random() * corners.length)];
-      }
+      if (corners.length > 0) chosen = corners[Math.floor(Math.random() * corners.length)];
    }
-
-   // 5. Fall back to any available cell
    if (!chosen) {
       const available = Array.from(buttons).filter(b => b.textContent === "");
       chosen = available[Math.floor(Math.random() * available.length)];
