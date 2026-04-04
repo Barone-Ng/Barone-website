@@ -1,6 +1,7 @@
 // ==================== WORD SNIPER - SAKURA EDITION ====================
 
 const paragraphs = [
+  // Paragraph 1
   {
     text: "About 4,000 years ago, Asian sailors introduced dingoes to Australia. Throughout the ensuing millennia, these descendants of the wolf spread across the continent and, as the Tasmanian tiger disappeared completely from Australia, dingoes became Australia’s top predators. As agricultural development took place, the European settlers found that they could not safely keep their livestock where dingoes roamed. So began one of the most sustained efforts at pest control in Australia’s history. Over the last 150 years, dingoes have been shot and poisoned, and fences have been used in an attempt to keep them away from livestock. But at the same time, as the European settlers tried to eliminate one native pest from Australia, they introduced more of their own.",
     words: [
@@ -20,6 +21,7 @@ const paragraphs = [
     ]
   },
 
+  // Paragraph 2
   {
     text: "A plane flies a slow pattern over Carlton Hill station, a 3,600 square kilometre ranch in the Kimberley region in northwest Australia. As the plane circles, those aboard drop 1,000 small pieces of meat, one by one, onto the scrubland below, each piece laced with poison; this practice is known as baiting. Besides 50,000 head of cattle, Carlton Hill is home to the dingo, Australia’s largest mammalian predator and the bane of a grazier's (cattle farmer's) life. Stuart McKechnie, manager of Carlton Hill, complains that graziers’ livelihoods are threatened when dingoes prey on cattle. But one man wants the baiting to end, and for dingoes to once again roam Australia’s wide-open spaces. According to Chris Johnson of James Cook University, ‘Australia needs more dingoes to protect our biodiversity.’",
     words: [
@@ -41,6 +43,7 @@ const paragraphs = [
     ]
   },
 
+  // Paragraph 3
   {
     text: "In 1860, the rabbit was unleashed on Australia by a wealthy landowner and by 1980 rabbits had covered most of the mainland. Rabbits provide huge prey base for two other introduced species: the feral (wild) cat and the red fox. The Interaction between foxes, cats and rabbits is a huge problem for native mammals. In good years, rabbit numbers increase dramatically, and fox and cat populations grow quickly in response to the abundance of this prey. When bad seasons follow, rabbit numbers are significantly reduced - and the dwindling but still large fox and cat populations are left with little to eat besides native mammals.",
     words: [
@@ -63,6 +66,7 @@ const paragraphs = [
     ]
   },
 
+  // Paragraph 4
   {
     text: "Australian mammals generally reproduce much more slowly than rabbits, cats and foxes - and adaption to prevent overpopulation in the arid environment, where food can be scarce and unreliable - and populations decline because they can’t grow fast enough to replace animals killed by the predators. Johnson says dingoes are the solution to this problem because they keep cat and fox populations under control. Besides regularly eating the smaller predators, dingoes will kill them simply to lessen competition. Dingo packs live in large, stable territories and generally have only one fertile, which limits their rate of increase. In the 4,000 years that dingoes have been Australia, they have contributed to few, if any, extinctions, Johnsons says.",
     words: [
@@ -85,6 +89,7 @@ const paragraphs = [
     ]
   },
 
+  // Paragraph 5
   {
     text: " Reaching out from a desolate spot where three states meet, for 2,500 km in either direction, is the world’s longest fence, two metres high and stretching from the coast in Queensland to the Great Australian Bight in South Australia; it is there to keep dingoes out of southeast, the fence separates the main types of livestock found in Australia. To the northwest of the fence, cattle predominate; to the southwest, sheep fill the landscape. In fact, Australia is a land dominated by these animals - 25 million cattle, 100 million sheep and just over 20 million people.",
     words: [
@@ -97,6 +102,7 @@ const paragraphs = [
     ]
   },
 
+  // Paragraph 6
   {
     text: "While there is no argument that dingoes will prey on sheep if given the chance, they don’t hunt cattle once the calves are much past two or three weeks old, according to McKechnie. And a study in Queensland suggests that dingoes don’t even prey heavily on the newborn calves unless their staple prey disappears due to deteriorating conditions like drought. This study, co-authored by Lee Alien of the Robert Wicks Research Centre in Queensland, suggests that the aggressive baiting programs used against dingoes may actually be counter-productive for graziers. When dingoes are removed from an area by baiting m the area is recolonized by younger, more solitary dingoes. These animals aren’t capable of going after the large prey like kangaroos, so they turn to calves. In their study, some of the highest rates of calf predation occurred in areas that had been baited.",
     words: [
@@ -113,8 +119,28 @@ const paragraphs = [
       { word: "solitary", correct: "Living or occurring alone", options: ["Living or occurring alone", "Living in groups", "Living in pairs", "Unrelated to the context"] },
       { word: "calf predation", correct: "The act of predators hunting and eating young cattle", options: ["The act of predators hunting and eating young cattle", "The act of predators hunting and eating adult sheep", "The act of predators hunting and eating wild animals native to Australia", "Unrelated to the context"] },
     ]
-  }
+  },
   
+  // Paragraph 7
+  {
+    text: "Mark Clifford, general manager of a firm that manages over 200,000 head of cattle, is not convinced by Allen’s assertion. Clifford says, ‘It’s obvious if we drop or loosen control on dingoes, we are going to lose more calves.’ He doesn’t believe that dingoes will go after kangaroos when calves are around. Nor is he persuaded of dingoes’ supposed ecological benefits, saying he is not convinced that they manage to catch cats that often, believing they are more likely to catch small native animals instead. <br><br>McKechnie agrees that dingoes kill the wallabies (small native animals) that compete with his cattle for food, but points out that in parts of Western Australia, there are no fixes, and not very many cats. He doesn’t see how relaxing controls on dingoes in his area will improve the ecological balance. Johnson sees a need for a change in philosophy on the part of graziers. ‘There might be a number of different ways of thinking through dingo management in cattle country,’ he says. ‘At the moment, though, that hasn’t got through to graziers. There’s still just on prescription, and that is to bait as widely as possible.’",
+    words: [
+      { word: "convinced", correct: "Completely certain about something", options: ["Completely certain about something", "Doubtful or skeptical about something", "Indifferent to something", "Unrelated to the context"] },
+      { word: "assertion", correct: "A confident and forceful statement of fact or belief", options: ["A confident and forceful statement of fact or belief", "A question or inquiry about something", "An unrelated concept", "A type of natural disaster"] },
+      { word: "obvious", correct: "Easily perceived or understood; clear", options: ["Easily perceived or understood; clear", "Difficult to understand or perceive", "Unrelated to the context", "A type of natural disaster"] },
+      { word: "loosen", correct: "To make something less tight or less strict", options: ["To make something less tight or less strict", "To make something tighter or more strict", "To have no effect on the situation", "Unrelated to the context"] },
+      { word: "ecological", correct: "Relating to the relationships between living organisms and their environment", options: ["Relating to the relationships between living organisms and their environment", "Relating to economic systems", "Relating to social interactions", "Unrelated to the context"] },
+      { word: "instead", correct: "As an alternative or substitute", options: ["As an alternative or substitute", "In addition to", "Contrary to", "Unrelated to the context"] },
+      { word: "compete", correct: "To strive against others to achieve a goal or win something", options: ["To strive against others to achieve a goal or win something", "To cooperate with others to achieve a common goal", "To ignore others and focus on oneself", "Unrelated to the context"] },
+      { word: "points out", correct: "To indicate or draw attention to something", options: ["To indicate or draw attention to something", "To ignore or overlook something", "To criticize or condemn something", "Unrelated to the context"] },
+      { word: "philosophy", correct: "A set of ideas or beliefs about how to live or manage something", options: ["A set of ideas or beliefs about how to live or manage something", "A type of natural disaster", "A traditional method of farming", "Unrelated to the context"] },
+      { word: "prescription", correct: "A recommendation or guideline for a course of action", options: ["A recommendation or guideline for a course of action", "A legal requirement", "An unrelated concept", "A type of natural disaster"] },
+      { word: "widely", correct: "Over a large area or to a great extent", options: ["Over a large area or to a great extent", "In a small area or to a limited extent", "Unrelated to the context", "A type of natural disaster"] },
+    ]
+  },
+
+  // Paragraph 8
+
 ];
 
 let currentParaIndex = 0;
@@ -134,20 +160,82 @@ let sessionStartTime = null;
 
 // Vietnamese meanings (add more as you go)
 const vietnameseMeanings = {
-  "ensuing": "tiếp theo, sau đó",
-  "millennia": "hàng thiên niên kỷ",
-  "descendants": "hậu duệ, con cháu",
-  "pest control": "kiểm soát sâu bệnh",
-  "sustained": "kéo dài, liên tục",
-  "eliminate": "loại bỏ hoàn toàn",
-  "introduced": "du nhập vào",
-  "baiting": "đặt mồi độc",
-  "graziers": "người chăn nuôi gia súc",
-  "bane": "tai họa, nguồn gốc gây khổ",
+  "sailors": "thủy thủ",
+  "Throughout": "suốt",
+  "ensuing": "sau đó",
+  "millennia": "nghìn năm",
+  "descendants": "hậu duệ",
+  "spread": "lan rộng",
+  "continent": "lục địa",
+  "took place": "diễn ra",
+  "settlers": "người định cư",
+  "sustained": "bền vững",
+  "pest": "sâu bệnh",
+  "fences": "hàng rào",
+  "livestock": "gia súc",
+  "pattern": "mẫu",
+  "ranch": "trang trại",
+  "aboard": "trên tàu",
+  "scrubland": "vùng đất cằn cỗi",
+  "laced": "được trộn lẫn",
+  "baiting": "đặt mồi",
+  "mammalian": "thuộc về động vật có vú",
+  "bane": "tai họa",
+  "complains": "phàn nàn",
+  "graziers": "người chăn nuôi",
   "livelihoods": "sinh kế",
-  "prey": "săn mồi",
-  "roam": "lang thang",
-  "biodiversity": "đa dạng sinh học"
+  "threatened": "bị đe dọa",
+  "cattle": "bò",
+  "roam": "đi lang thang",
+  "biodiversity": "đa dạng sinh học",
+  "unleashed": "thả ra",
+  "wealthy": "giàu có",
+  "mainland": "lục địa",
+  "provide": "cung cấp",
+  "prey": "con mồi",
+  "feral": "hoang dã",
+  "interaction": "tương tác",
+  "native": "bản địa",
+  "mammals": "động vật có vú",
+  "increase dramatically": "tăng mạnh",
+  "response": "phản ứng",
+  "significantly reduced": "giảm đáng kể",
+  "abundance": "sự phong phú",
+  "dwindling": "suy giảm",
+  "besides": "bên cạnh đó",
+  "mammals": "động vật có vú",
+  "adaption": "sự thích nghi",
+  "overpopulation": "quá tải dân số",
+  "prevent": "ngăn chặn",
+  "arid": "khô cằn",
+  "scarce": "không đủ",
+  "unreliable": "không đáng tin cậy",
+  "predators": "động vật săn mồi",
+  "solution": "giải pháp",
+  "besides": "bên cạnh đó",
+  "lessen": "giảm bớt",
+  "packs": "bầy đàn",
+  "territories": "lãnh thổ",
+  "fertile": "phì nhiêu",
+  "contributed": "đóng góp",
+  "extinctions": "sự tuyệt chủng",
+  "desolate": "hoang vắng",
+  "stretching": "kéo dài",
+  "coast": "bờ biển",
+  "separates": "phân tách",
+  "predominate": "chiếm ưu thế",
+  "dominate": "thống trị",
+  "convinced": "thuyết phục",
+  "assertion": "sự khẳng định",
+  "obvious": "rõ ràng",
+  "loosen": "nới lỏng",
+  "ecological": "thuộc về sinh thái",
+  "instead": "thay vào đó",
+  "compete": "cạnh tranh",
+  "points out": "chỉ ra",
+  "philosophy": "triết lý",
+  "prescription": "đơn thuốc",
+  "widely": "rộng rãi",
 };
 
 function loadDailyStats() {
@@ -250,26 +338,90 @@ function showVietnameseHint(word, isCorrect = false) {
   const existing = document.getElementById('viet-hint');
   if (existing) existing.remove();
 
-  const meaning = vietnameseMeanings[word] || "Đang cập nhật...";
+  const vietMeaning = vietnameseMeanings[word] || "Đang cập nhật...";
+  const englishMeaning = paragraphs[currentParaIndex].words.find(w => w.word === word)?.correct || "No definition found";
 
   const hintHTML = `
     <div id="viet-hint" class="${isCorrect ? 'correct-hint' : ''}">
-      <strong>${isCorrect ? '🌸 Tuyệt vời! Nghĩa tiếng Việt:' : '🌸 Nghĩa tiếng Việt:'}</strong><br><br>
-      <span>${meaning}</span>
-      <br><br>
-      <button id="next-after-hint">Tiếp tục 🌸</button>
+      <strong>${isCorrect ? '🌸 Tuyệt vời!' : '🌸 Học từ này cùng mình nhé:'}</strong><br><br>
+      
+      <span><strong>${word}</strong></span><br><br>
+      
+      <div style="text-align: left; max-width: 420px; margin: 0 auto;">
+        <p style="margin: 8px 0; color: #e04a7e; font-weight: 600;">
+          English: <span class="hint-meaning-text" style="font-weight: 500;">${englishMeaning}</span>
+        </p>
+        <p style="margin: 8px 0; color: #ff4d7a; font-weight: 600;">
+          Tiếng Việt: <span class="hint-meaning-text" style="font-weight: 500;">${vietMeaning}</span>
+        </p>
+      </div>
+
+      <div style="margin: 25px 0 15px;">
+        <p style="margin-bottom: 10px; font-size: 1.05rem; color: #666; font-weight: 500;">
+          Gõ lại từ tiếng Anh để tiếp tục:
+        </p>
+        <input type="text" id="word-input" 
+               placeholder="Nhập từ tiếng Anh ở đây..." 
+               autocomplete="off"
+               style="width: 100%; max-width: 420px; padding: 16px 20px; font-size: 1.25rem; 
+                      border: 3px solid #ff4d7a; border-radius: 14px; outline: none; 
+                      font-weight: 600;">
+      </div>
+      
+      <button id="submit-word-btn">Xác nhận & Tiếp tục 🌸</button>
+      
+      <div id="input-feedback" style="margin-top: 15px; min-height: 28px; font-size: 1.1rem; font-weight: 600;"></div>
     </div>
   `;
 
   const optionsDiv = document.getElementById('options');
   optionsDiv.insertAdjacentHTML('afterend', hintHTML);
 
-  document.getElementById('next-after-hint').onclick = () => {
-    document.getElementById('viet-hint').remove();
-    currentWordIndex++;
-    document.getElementById('progress').textContent = `${currentWordIndex}/${paragraphs[currentParaIndex].words.length}`;
-    showNextWord();
-  };
+  const input = document.getElementById('word-input');
+  const submitBtn = document.getElementById('submit-word-btn');
+  const feedbackDiv = document.getElementById('input-feedback');
+
+  // Auto focus input
+  setTimeout(() => {
+    input.focus();
+  }, 150);
+
+  function checkInput() {
+    const userInput = input.value.trim();
+
+    if (userInput.toLowerCase() === word.toLowerCase()) {
+      feedbackDiv.innerHTML = `<span style="color: #e04a7e;">✓ Chính xác! Đang chuyển sang từ tiếp theo...</span>`;
+      submitBtn.disabled = true;
+      input.disabled = true;
+      input.style.borderColor = '#e04a7e';
+
+      setTimeout(() => {
+        document.getElementById('viet-hint').remove();
+        currentWordIndex++;
+        document.getElementById('progress').textContent = `${currentWordIndex}/${paragraphs[currentParaIndex].words.length}`;
+        showNextWord();
+      }, 900);
+    } 
+    else {
+      feedbackDiv.innerHTML = `<span style="color: #ff6b6b;">✗ Chưa đúng. Hãy gõ lại: <strong>${word}</strong></span>`;
+      input.value = '';
+      input.focus();
+      
+      // Shake animation
+      input.style.transition = 'transform 0.1s';
+      input.style.transform = 'translateX(8px)';
+      setTimeout(() => input.style.transform = 'translateX(-8px)', 100);
+      setTimeout(() => input.style.transform = 'translateX(0)', 300);
+    }
+  }
+
+  submitBtn.onclick = checkInput;
+
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      checkInput();
+    }
+  });
 }
 
 function loadParagraph() {
