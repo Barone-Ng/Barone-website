@@ -8,6 +8,8 @@
 </head>
 <body class="light">
   <div class="container">
+
+    <!-- HEADER -->
     <header>
       <h1>🌸 Word Sniper</h1>
       <div class="stats">
@@ -17,26 +19,106 @@
       </div>
     </header>
 
+    <!-- GAME SCREEN -->
     <div id="game-screen">
       <div class="paragraph-box">
         <p id="paragraph"></p>
       </div>
-
       <div class="question-area">
-        <h2>Word <span id="current-word-num">1</span>: <span id="target-word" class="highlight"></span></h2>
+        <h2>Word <span id="current-word-num">1</span>:
+            <span id="target-word" class="highlight"></span></h2>
         <div id="feedback" class="feedback"></div>
         <div id="options" class="options"></div>
       </div>
     </div>
 
-    <div id="result-screen" class="hidden">
-      <h2 id="round-result"></h2>
-      <p id="final-score"></p>
-      <p id="powerup-message" class="powerup"></p>
-    </div>
-  </div>
+    <!-- BETWEEN-ROUND / FINAL RESULT SCREEN -->
+    <div id="result-screen" class="hidden"></div>
+
+    <!-- FLASHCARD SCREEN — shown after all paragraphs, before fill-in-the-blank -->
+    <div id="flashcard-screen" class="hidden">
+      <div style="max-width:620px; margin:0 auto; padding:20px;">
+
+        <h2 style="text-align:center; color:#e04a7e; margin-bottom:6px; font-size:1.8rem;">
+          🃏 Flashcard Review
+        </h2>
+        <p id="flashcard-progress"
+           style="text-align:center; color:#aaa; font-size:1rem;
+                  margin-bottom:24px; letter-spacing:0.05em;">
+          Card 1 of 10
+        </p>
+
+        <!-- The card itself -->
+        <div id="flashcard" class="flashcard-outer">
+          <div class="flashcard-inner">
+            <!-- FRONT -->
+            <div class="flashcard-face flashcard-front">
+              <div class="flashcard-word" id="fc-word"></div>
+              <p class="flashcard-tap-hint">Tap to reveal 👆</p>
+            </div>
+            <!-- BACK -->
+            <div class="flashcard-face flashcard-back">
+              <div class="flashcard-viet" id="fc-viet"></div>
+              <div class="flashcard-english" id="fc-english"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons row — hidden until card is flipped -->
+        <div id="fc-btn-row" style="text-align:center; margin-top:28px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+          <button id="fc-skip-btn"  class="fc-btn-skip"  onclick="advanceFlashcard(false)">Bỏ qua ⏭</button>
+          <button id="fc-known-btn" class="fc-btn-known" onclick="advanceFlashcard(true)">Thuộc rồi ✓</button>
+        </div>
+
+        <div id="fc-feedback" style="min-height:28px; text-align:center; margin-top:16px; font-size:1rem; color:#aaa;"></div>
+
+      </div>
+    </div><!-- /flashcard-screen -->
+
+    <!-- REVIEW SCREEN — Fill in the Blank (shown after 2 paragraphs) -->
+    <div id="review-screen" class="hidden">
+      <div style="max-width:920px; margin:0 auto; padding:20px;">
+
+        <h2 style="text-align:center; color:#e04a7e; margin-bottom:8px; font-size:1.8rem;">
+          ✏️ Fill in the Blank
+        </h2>
+        <p id="review-progress"
+           style="text-align:center; color:#aaa; font-size:1rem;
+                  margin-bottom:28px; letter-spacing:0.05em;">
+          Question 1 of 5
+        </p>
+
+        <!-- Sentence display -->
+        <div id="fill-paragraph" class="fill-sentence-box"></div>
+
+        <!-- 4-option multiple choice grid -->
+        <div id="fill-options" class="fill-options-grid"></div>
+
+        <!-- Feedback -->
+        <div id="fill-feedback"
+             style="min-height:36px; text-align:center; font-size:1.1rem;
+                    font-weight:700; margin:16px 0;">
+        </div>
+
+        <!-- Next button (hidden until answered) -->
+        <div style="text-align:center; margin-top:8px;">
+          <button id="fill-next-btn" class="hidden" onclick="nextFillQuestion()">
+            Next →
+          </button>
+        </div>
+
+      </div>
+    </div><!-- /review-screen -->
+
+  </div><!-- /container -->
+
+  <!-- Dev reset button -->
+  <button onclick="localStorage.removeItem('wordSniperDaily'); location.reload();"
+          style="position:fixed; bottom:12px; right:12px; opacity:0.15;
+                 font-size:0.7rem; padding:6px 12px; z-index:9999;">
+    reset
+  </button>
 
   <script src="WordSniper.js"></script>
-  <button onclick="localStorage.removeItem('wordSniperDaily'); location.reload();" style="position:fixed; bottom:12px; right:12px; opacity:0.15; font-size:0.7rem; padding:6px 12px; z-index:9999;">reset</button>
 </body>
 </html>
