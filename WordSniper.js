@@ -236,6 +236,18 @@ const vietnameseMeanings = {
   "philosophy": "triết lý",
   "prescription": "đơn thuốc",
   "widely": "rộng rãi",
+  "argument": "lý lẽ",
+  "calves": "bê con",
+  "according to": "theo như",
+  "staple": "chính",
+  "deteriorating": "xấu đi",
+  "drought": "hạn hán",
+  "co-authored": "đồng tác giả",
+  "aggressive": "hung hăng",
+  "counter-productive": "phản tác dụng",
+  "recolonized": "tái định cư",
+  "solitary": "đơn độc",
+  "calf predation": "sự săn mồi của bê con",
 };
 
 function loadDailyStats() {
