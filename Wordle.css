@@ -328,3 +328,16 @@ body::before {
    line-height: 1.5;
    font-style: italic;
 }
+
+/* Prevent double-tap zoom and text selection */
+body, .app, .tile, .kb-key {
+  -webkit-touch-callout: none;     /* Disable long press menu */
+  -webkit-user-select: none;       /* Disable text selection */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;  /* Remove tap highlight */
+}
+
+/* Improve touch responsiveness */
+.tile, .kb-key {
+  touch-action: manipulation;      /* Best for preventing zoom + better feel */
+}

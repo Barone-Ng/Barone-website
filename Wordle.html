@@ -103,11 +103,23 @@
 </div>
 
 <script>
-  document.addEventListener('touchend', function(e) {
-    var now = Date.now();
-    if (now - (this._lastTouch || 0) < 300) e.preventDefault();
-    this._lastTouch = now;
-  }, { passive: false });
+   // Prevent double-tap zoom on iOS and Android
+   let lastTouchEnd = 0;
+
+   document.addEventListener('touchend', function(event) {
+      const now = Date.now();
+      
+      if (now - lastTouchEnd <= 300) {
+      event.preventDefault();
+      }
+      
+      lastTouchEnd = now;
+   }, { passive: false });
+
+   // Optional: Also prevent zoom on gesture (pinch zoom)
+   document.addEventListener('gesturestart', function(e) {
+      e.preventDefault();
+   }, { passive: false });
 </script>
 <script src="Wordle.js"></script>
 </body>
