@@ -199,8 +199,9 @@ const VALID_WORDS = new Set([
    "SNORT","SPORT","ABORT","SHORT","EXERT","INERT","OVERT","AVERT","DIVERT","EVERT",
    "CHEST","CREST","UNREST","ATTEST","INVEST","DIVEST","MODEST","HONEST","FOREST",
    "MOURN","ADORN","CHURN","INURN","BURNT","FRONT","BLUNT","GRUNT","STUNT","SPURT",
-   "SPOOK","CROOK","BROOK","SHOOK","STOOD","FLOOD","BLOOD","BROOD","SWOON","DROOL",
+   "SPOOK","CROOK","BROOK","SHOOK","STOOD","FLOOD","BLOOD","BROOD","SWOON","DROOL","APPLE",
    "BROOM","BLOOM","GLOOM","PROOF","SPOOF","TROOP","STOOL","DROOL","SPOOL","STOOP","VOGUE","MUSIC",
+   "NEWSY","HIPPY","HAPPY","ETHIC","RESIN","RESTS","ROMAN","SHEER","SHEET","SILKY","SLAIN","SLANT","STEAD","THERE","THESE","WHERE","WHICH",
    // 4-letter noun plurals
    "ACIDS","ACRES","ARCHS","AREAS","AUNTS","BACKS","BALES","BALLS","BANDS","BANKS",
    "BARNS","BATHS","BEADS","BEAKS","BEANS","BEARS","BEATS","BELLS","BELTS","BENDS",
@@ -240,7 +241,7 @@ const VALID_WORDS = new Set([
    "TOWNS","TRAPS","TREES","TRIPS","TUBES","TUNES","TURFS","TURNS","TWIGS","TYPES",
    "UNITS","VALES","VANES","VEINS","VENTS","VERBS","VESTS","VIEWS","VINES","VOLTS",
    "VOTES","WADES","WAFTS","WAIFS","WALKS","WALLS","WANTS","WASPS","WAVES","WEEKS",
-   "WELLS","WELTS","WICKS","WINDS","WINGS","WIRES","WISPS","WORDS","WORKS","WORMS",
+   "WELLS","WELTS","WICKS","WINDS","WINGS","WIRES","WISPS","WORDS","WORKS","WORMS","DEMON",
    "YARDS","YEARS","YOKES","YOLKS","ZINCS","ZONES","BLEAT","TROLL","PRONE","VOUCH","LOUSE","SCOUR","APRON","SWEEP","SPINE","SHOUT","CLASH",
 ]);
 
@@ -1245,6 +1246,17 @@ const VN_MEANINGS = {
    "WRONG": "sai; điều sai",
    "YOUNG": "trẻ tuổi",
    "ZONAL": "thuộc về vùng, khu vực",
+   "ZEBRA": "con ngựa vằn",
+   "ZESTY": "đầy hương vị; sôi nổi",
+   "ZIPPY": "nhanh nhẹn, sôi nổi",
+   "ZONED": "được phân vùng; mất tập trung",
+   "ZAPPY": "đầy năng lượng; có điện giật",
+   "ZANY": "kỳ quặc, hài hước; người kỳ quặc",
+   "ZESTY": "đầy hương vị; sôi nổi",
+   "ZIPPY": "nhanh nhẹn, sôi nổi",
+   "ZONED": "được phân vùng; mất tập trung",
+   "ZAPPY": "đầy năng lượng; có điện giật",
+   "ZANY": "kỳ quặc, hài hước; người kỳ quặc",
 };
 
 // ── Show VN meaning (instant lookup) ─────────────
