@@ -333,12 +333,13 @@ function createPetalBurst() {
 // ====================== PUNISHMENT SYSTEM ======================
 function applyPunishment() {
   punishmentLevel = Math.min(punishmentLevel + 1, 3);
-  document.body.className = `punish-${punishmentLevel}`;
+  document.body.classList.remove('punish-1', 'punish-2', 'punish-3');
+  document.body.classList.add(`punish-${punishmentLevel}`);
 }
 
 function resetPunishment() {
   punishmentLevel = 0;
-  document.body.className = 'light';
+  document.body.classList.remove('punish-1', 'punish-2', 'punish-3');
 }
 
 // ====================== SCREEN HELPERS ======================

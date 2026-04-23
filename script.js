@@ -236,3 +236,139 @@ function initKeycaps() {
         }
     });
 }
+
+// ─── Canvas Shooting Stars ────────────────────────────
+(function () {
+    const canvas = document.getElementById('shootingStarsCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Only run in dark mode
+    function isDark() {
+        return document.body.classList.contains('dark');
+    }
+
+    const ANGLE_DEG = 145;           // direction stars travel
+    const ANGLE_RAD = ANGLE_DEG * Math.PI / 180;
+    const COS = Math.cos(ANGLE_RAD);
+    const SIN = Math.sin(ANGLE_RAD);
+
+    function randomBetween(a, b) {
+        return a + Math.random() * (b - a);
+    }
+
+    function spawnStar() {
+        // Spawn along the top edge and right edge
+        const spawnOnTop = Math.random() < 0.65;
+        let x, y;
+        if (spawnOnTop) {
+            x = randomBetween(-50, canvas.width);
+            y = randomBetween(-50, canvas.height * 0.4);
+        } else {
+            x = randomBetween(canvas.width * 0.4, canvas.width + 50);
+            y = randomBetween(-50, canvas.height * 0.5);
+        }
+        return {
+            x, y,
+            speed:   randomBetween(0.5, 1.5),
+            length:  randomBetween(80, 220),
+            opacity: randomBetween(0.5, 1.0),
+            width:   randomBetween(1, 2.5),
+            fade:    0,       // 0 = appearing, 1 = fading out
+            life:    0,       // 0→1 progress through lifetime
+            maxLife: randomBetween(1, 3),  // how long it lives (as fraction of full travel)
+        };
+    }
+
+    let stars = [];
+    let nextSpawn = 0;
+
+    function spawnInterval() {
+        return randomBetween(300, 1200); // ms between spawns
+    }
+
+    function drawStar(s) {
+        // Tail start (behind) → head (front)
+        const tailX = s.x - COS * s.length;
+        const tailY = s.y - SIN * s.length;
+
+        // Gradient along the tail
+        const grad = ctx.createLinearGradient(tailX, tailY, s.x, s.y);
+        grad.addColorStop(0,   `rgba(255,255,255,0)`);
+        grad.addColorStop(0.6, `rgba(255,255,255,${s.opacity * 0.4})`);
+        grad.addColorStop(1,   `rgba(255,255,255,${s.opacity})`);
+
+        ctx.beginPath();
+        ctx.moveTo(tailX, tailY);
+        ctx.lineTo(s.x, s.y);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth   = s.width;
+        ctx.lineCap     = 'round';
+        ctx.stroke();
+
+        // Glowing head
+        const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.width * 5);
+        glow.addColorStop(0,   `rgba(255,255,255,${s.opacity})`);
+        glow.addColorStop(0.4, `rgba(180,220,255,${s.opacity * 0.5})`);
+        glow.addColorStop(1,   `rgba(180,220,255,0)`);
+
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.width * 5, 0, Math.PI * 2);
+        ctx.fillStyle = glow;
+        ctx.fill();
+    }
+
+    let last = 0;
+    function loop(timestamp) {
+        const delta = timestamp - last;
+        last = timestamp;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (isDark()) {
+            // Spawn new stars on a timer
+            nextSpawn -= delta;
+            if (nextSpawn <= 0) {
+                if (stars.length < 4) {
+                    stars.push(spawnStar());
+                }
+                nextSpawn = spawnInterval();
+            }
+
+            // Update & draw
+            stars = stars.filter(s => s.opacity > 0.01);
+            for (const s of stars) {
+                s.x += COS * s.speed;
+                s.y += SIN * s.speed;
+                s.life += delta / 5000; // normalise life speed
+
+                // Fade out as it approaches its max life
+                if (s.life > s.maxLife * 0.6) {
+                    s.opacity -= 0.008;
+                }
+
+                // Remove if off screen
+                if (s.x > canvas.width + 300 || s.y > canvas.height + 300) {
+                    s.opacity = 0;
+                }
+
+                drawStar(s);
+            }
+        } else {
+            // Clear stars when switching to light mode
+            stars = [];
+        }
+
+        requestAnimationFrame(loop);
+    }
+
+    requestAnimationFrame(loop);
+})();
+
