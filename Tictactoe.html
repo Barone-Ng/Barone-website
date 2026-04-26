@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Tic-Tac-Toe</title>
+      <link rel="stylesheet" href="Tictactoe.css">
+      <script src="Tictactoe.js"></script>
+   </head>
+   <body>
+      <div class="card">
+         <h1>Tic&#8209;Tac&#8209;Toe</h1>
+
+         <!-- Score strip -->
+         <div class="score-strip">
+            <div class="score-box you">
+               <span class="score-label">You (X)</span>
+               <span class="score-value" id="scoreYou">0</span>
+            </div>
+            <span class="score-divider">·</span>
+            <div class="score-box ties">
+               <span class="score-label">Ties</span>
+               <span class="score-value" id="scoreTies">0</span>
+            </div>
+            <span class="score-divider">·</span>
+            <div class="score-box cpu">
+               <span class="score-label">CPU (O)</span>
+               <span class="score-value" id="scoreCpu">0</span>
+            </div>
+         </div>
+
+         <!-- 3x3 grid -->
+         <div id="gameBoard">
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+         </div>
+
+         <p id="turnInfo">Your turn</p>
+         <button id="newGameButton">New Game</button>
+      </div>
+   </body>
+</html>

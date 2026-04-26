@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+   --bg:        #08070f;
+   --bg2:       #0e0c1a;
+   --panel:     #12101f;
+   --border:    #2a2548;
+   --x-color:   #ff2d6f;
+   --x-glow:    rgba(255, 45, 111, 0.5);
+   --o-color:   #00e5ff;
+   --o-glow:    rgba(0, 229, 255, 0.5);
+   --neutral:   #7b68ee;
+   --neutral-glow: rgba(123, 104, 238, 0.4);
+   --text:      #e8e0ff;
+   --text-dim:  #6b5f9e;
+   --win-glow:  rgba(255, 215, 0, 0.6);
+}
+
+body {
+   font-family: 'Exo 2', sans-serif;
+   background: var(--bg);
+   color: var(--text);
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
+   position: relative;
+}
+
+/* ── Grid background ── */
+body::before {
+   content: '';
+   position: fixed; inset: 0;
+   background-image:
+      linear-gradient(rgba(123,104,238,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(123,104,238,0.04) 1px, transparent 1px);
+   background-size: 40px 40px;
+   pointer-events: none;
+}
+
+body::after {
+   content: '';
+   position: fixed;
+   inset: 0;
+   background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(18,16,31,0) 0%, var(--bg) 100%);
+   pointer-events: none;
+}
+
+/* ── Main card ── */
+.card {
+   position: relative;
+   z-index: 1;
+   background: var(--panel);
+   border: 1px solid var(--border);
+   border-radius: 20px;
+   padding: 36px 40px 32px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 24px;
+   box-shadow:
+      0 0 0 1px rgba(123,104,238,0.1),
+      0 20px 60px rgba(0,0,0,0.6),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* ── Title ── */
+h1 {
+   font-family: 'Orbitron', monospace;
+   font-size: 1.6rem;
+   font-weight: 900;
+   letter-spacing: 4px;
+   text-transform: uppercase;
+   background: linear-gradient(135deg, var(--x-color), var(--neutral), var(--o-color));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+   filter: drop-shadow(0 0 12px var(--neutral-glow));
+}
+
+/* ── Board ── */
+#gameBoard {
+   display: grid;
+   grid-template-columns: repeat(3, 96px);
+   grid-template-rows: repeat(3, 96px);
+   gap: 10px;
+   position: relative;
+}
+
+/* Crossing lines decoration */
+#gameBoard::before,
+#gameBoard::after {
+   content: '';
+   position: absolute;
+   background: linear-gradient(90deg, transparent, var(--border), transparent);
+   height: 1px;
+   width: 100%;
+   pointer-events: none;
+}
+#gameBoard::before { top: calc(33.33% + 3px); }
+#gameBoard::after  { top: calc(66.66% + 7px); }
+
+#gameBoard > button {
+   background: var(--bg2);
+   border: 1px solid var(--border);
+   border-radius: 12px;
+   font-family: 'Orbitron', monospace;
+   font-size: 2.4rem;
+   font-weight: 900;
+   cursor: pointer;
+   color: transparent;
+   transition: background 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.2s;
+   position: relative;
+   overflow: hidden;
+}
+
+#gameBoard > button::before {
+   content: '';
+   position: absolute; inset: 0;
+   background: radial-gradient(circle at center, rgba(255,255,255,0.04), transparent 70%);
+   opacity: 0;
+   transition: opacity 0.2s;
+}
+
+#gameBoard > button:not([disabled]):hover {
+   background: rgba(123,104,238,0.1);
+   border-color: var(--neutral);
+   transform: scale(1.04);
+   box-shadow: 0 0 18px var(--neutral-glow);
+}
+#gameBoard > button:not([disabled]):hover::before { opacity: 1; }
+
+#gameBoard > button:active:not([disabled]) {
+   transform: scale(0.96);
+}
+
+/* ── X mark ── */
+#gameBoard > button.x {
+   color: var(--x-color);
+   border-color: rgba(255, 45, 111, 0.4);
+   background: rgba(255, 45, 111, 0.06);
+   box-shadow: 0 0 20px rgba(255, 45, 111, 0.15), inset 0 0 12px rgba(255, 45, 111, 0.05);
+   animation: markAppear 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── O mark ── */
+#gameBoard > button.o {
+   color: var(--o-color);
+   border-color: rgba(0, 229, 255, 0.4);
+   background: rgba(0, 229, 255, 0.06);
+   box-shadow: 0 0 20px rgba(0, 229, 255, 0.15), inset 0 0 12px rgba(0, 229, 255, 0.05);
+   animation: markAppear 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes markAppear {
+   from { transform: scale(0.5); opacity: 0; }
+   to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Winning cells ── */
+#gameBoard > button.winner {
+   animation: winPulse 0.7s ease forwards;
+}
+@keyframes winPulse {
+   0%   { transform: scale(1); }
+   30%  { transform: scale(1.12); }
+   60%  { transform: scale(1.05); }
+   100% { transform: scale(1.08); box-shadow: 0 0 32px var(--win-glow); border-color: gold; }
+}
+
+/* ── Status text ── */
+#turnInfo {
+   font-family: 'Orbitron', monospace;
+   font-size: 0.8rem;
+   letter-spacing: 3px;
+   text-transform: uppercase;
+   color: var(--text-dim);
+   padding: 10px 24px;
+   border: 1px solid var(--border);
+   border-radius: 30px;
+   background: var(--bg2);
+   transition: all 0.3s;
+   min-width: 220px;
+   text-align: center;
+}
+
+#turnInfo.your-turn {
+   color: var(--x-color);
+   border-color: rgba(255, 45, 111, 0.4);
+   background: rgba(255, 45, 111, 0.06);
+   box-shadow: 0 0 16px rgba(255, 45, 111, 0.15);
+}
+
+#turnInfo.computer-turn {
+   color: var(--o-color);
+   border-color: rgba(0, 229, 255, 0.4);
+   background: rgba(0, 229, 255, 0.06);
+   box-shadow: 0 0 16px rgba(0, 229, 255, 0.15);
+}
+
+#turnInfo.win  {
+   color: gold;
+   border-color: rgba(255,215,0,0.5);
+   background: rgba(255,215,0,0.06);
+   box-shadow: 0 0 24px var(--win-glow);
+   font-size: 0.9rem;
+}
+
+#turnInfo.draw {
+   color: var(--neutral);
+   border-color: rgba(123,104,238,0.4);
+   background: rgba(123,104,238,0.06);
+   box-shadow: 0 0 16px var(--neutral-glow);
+}
+
+/* ── New Game button ── */
+#newGameButton {
+   font-family: 'Orbitron', monospace;
+   font-size: 0.72rem;
+   font-weight: 700;
+   letter-spacing: 3px;
+   text-transform: uppercase;
+   padding: 12px 32px;
+   border-radius: 30px;
+   border: 1px solid var(--neutral);
+   background: transparent;
+   color: var(--neutral);
+   cursor: pointer;
+   transition: all 0.2s;
+   box-shadow: 0 0 12px var(--neutral-glow);
+}
+
+#newGameButton:hover {
+   background: var(--neutral);
+   color: var(--bg);
+   box-shadow: 0 0 28px var(--neutral-glow);
+   transform: scale(1.04);
+}
+
+#newGameButton:active { transform: scale(0.97); }
+
+/* ── Score strip ── */
+.score-strip {
+   display: flex;
+   gap: 20px;
+   align-items: center;
+}
+
+.score-box {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 3px;
+   padding: 8px 20px;
+   border-radius: 10px;
+   border: 1px solid var(--border);
+   background: var(--bg2);
+   min-width: 70px;
+}
+
+.score-label {
+   font-size: 0.55rem;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   color: var(--text-dim);
+}
+
+.score-value {
+   font-family: 'Orbitron', monospace;
+   font-size: 1.4rem;
+   font-weight: 700;
+}
+
+.score-box.you  .score-value { color: var(--x-color); text-shadow: 0 0 10px var(--x-glow); }
+.score-box.cpu  .score-value { color: var(--o-color); text-shadow: 0 0 10px var(--o-glow); }
+.score-box.ties .score-value { color: var(--neutral); text-shadow: 0 0 10px var(--neutral-glow); }
+
+.score-divider { color: var(--border); font-size: 1.2rem; }
