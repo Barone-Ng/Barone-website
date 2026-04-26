@@ -112,7 +112,7 @@ function initTypingAnimation() {
     const target = document.getElementById('typedTitle');
     if (!target || target.dataset.typed) return;
     target.dataset.typed = '1';
-    const text  = '// Early Access Web Developer';
+    const text  = '// Early Access Developer';
     let i = 0;
     target.textContent = '';
     const interval = setInterval(() => {
