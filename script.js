@@ -234,7 +234,7 @@ function initKeycaps() {
             const dy = (r.top + r.height / 2) - y;
             const dist  = Math.hypot(dx, dy) || 1;
             const depth = parseFloat(el.dataset.cast) || 1;
-            const len   = Math.min(3 + dist * 0.03, 22) * depth; // farther light → longer shadow
+            const len   = Math.min(6 + dist * 0.06, 34) * depth; // farther light → longer shadow
 
             el.style.setProperty('--sx', (dx / dist * len).toFixed(2) + 'px');
             el.style.setProperty('--sy', (dy / dist * len).toFixed(2) + 'px');
