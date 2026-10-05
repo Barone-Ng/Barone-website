@@ -441,3 +441,15 @@ function initKeycaps() {
 
     if (close) close.addEventListener('click', hideHint);
 })();
+
+
+// ─── Touch support: finger = light source ─────────────
+(function () {
+    const coarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    if (!coarse) return;
+    document.body.classList.add('touch');
+    [['cardFoot'], ['hintText']].forEach(([id]) => {
+        const el = document.getElementById(id);
+        if (el && el.dataset.touch) el.innerHTML = el.dataset.touch;
+    });
+})();

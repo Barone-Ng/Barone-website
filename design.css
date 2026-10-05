@@ -174,15 +174,15 @@ body:not(.dark) .theme-btn {
 }
 .popup-info::-webkit-scrollbar { display: none; }
 
-.card .popup-info .close-btn-info {
+.popup .popup-info .close-btn-info {
     position: absolute; top: 14px; right: 16px;
     width: 32px; height: 32px; margin: 0; padding: 0;
     display: flex; align-items: center; justify-content: center;
     background: transparent; border: none; box-shadow: none; border-radius: 50%;
     transform: none; cursor: pointer; z-index: 20;
 }
-.card .popup-info .close-btn-info:hover { background: transparent; transform: none; }
-.card .popup-info .close-btn-info:active { transform: translateY(1px); }
+.popup .popup-info .close-btn-info:hover { background: transparent; transform: none; }
+.popup .popup-info .close-btn-info:active { transform: translateY(1px); }
 .popup-info .close-icon { width: 32px; height: 32px; display: block; }
 .popup-info .close-ring { stroke: var(--rule); transition: stroke 0.2s; }
 .popup-info .close-line { stroke: var(--ink); transition: stroke 0.2s; }
@@ -916,3 +916,51 @@ body.lights-on .darkness { opacity: 0; }
 @keyframes hintIn { from { opacity: 0; transform: translate(-50%, -44%); } to { opacity: 1; transform: translate(-50%, -50%); } }
 
 @media (max-width: 700px) { .pull-cord { right: 24px; } .cord-line { height: calc(100px + var(--pull)); } }
+
+
+/* ═══ Popups: always the top layer (above card, orb, cord; below flashlight) ═══ */
+.popup { z-index: 95; }
+
+
+/* ═══ Touch / phone friendly ═══════════════════════════ */
+/* The page itself never pans, so a dragging finger keeps firing pointermove (= moves the light). */
+html, body {
+    touch-action: none;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none; user-select: none;
+    -webkit-touch-callout: none;
+}
+body { height: 100vh; height: 100dvh; }
+/* Tabs can still scroll vertically with a finger */
+.popup-info { touch-action: pan-y; overscroll-behavior: contain; max-height: 85vh; max-height: 85dvh; }
+button, a, .keycap, .cord-handle { touch-action: manipulation; }
+.cord-handle { touch-action: none; }
+
+/* No sticky "hover" states on touch screens */
+@media (hover: none) {
+    .card:hover { transform: none; }
+    .card .button-group button:hover { transform: none; color: var(--t-text); border-color: var(--t-line); }
+    .card .button-group button:hover .b-arrow { transform: none; color: var(--t-muted); }
+    .card .button-group button:active { color: var(--t-accent); border-color: var(--t-accent); transform: scale(0.97); }
+    .fun-btn:hover { transform: none; background: var(--t-tile); border-color: var(--t-line); }
+    .fun-btn:active { background: color-mix(in srgb, var(--t-accent) 9%, transparent); border-color: var(--t-accent); }
+}
+
+/* Phone layout */
+@media (max-width: 700px) {
+    .light-orb { width: 420px; height: 420px; }
+    .card .button-group button { min-height: 44px; }
+    .popup-info { width: min(94vw, 420px); max-height: 88vh; max-height: 88dvh; }
+    .popup-info .info-name { font-size: 2.3rem; }
+    .popup-info .info-header, .popup-info .info-body { padding-left: 20px; padding-right: 20px; }
+    .popup-info .key-row { flex-wrap: wrap; }
+    .popup-info .keycap { flex: 0 0 calc((100% - 16px) / 3); }
+    .popup-info .key-row-offset { margin-left: 0; }
+    .popup-info .info-row { grid-template-columns: 110px 1fr; }
+    .card .popup-info .close-btn-info, .popup .popup-info .close-btn-info { width: 44px; height: 44px; top: 8px; right: 8px; }
+    .popup-fun { width: min(94vw, 360px); }
+    .fun-btn { min-height: 76px; }
+    .hint { padding: 20px; }
+    .theme-btn { bottom: max(20px, env(safe-area-inset-bottom)); right: 20px; }
+}
