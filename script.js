@@ -88,37 +88,7 @@ popupContents.forEach(popup => {
 let infoPopupReady = false;
 
 function initInfoPopup() {
-    initScrollProgress();
-    initTypingAnimation();
     initKeycaps();
-}
-
-// ─── 1. Scroll progress bar ───────────────────────────
-function initScrollProgress() {
-    const scroller = document.getElementById('infoScroll');
-    const bar      = document.getElementById('scrollProgressBar');
-    if (!scroller || !bar) return;
-    // remove old listener by replacing with new
-    const handler = () => {
-        const max = scroller.scrollHeight - scroller.clientHeight;
-        const pct = max > 0 ? (scroller.scrollTop / max) * 100 : 0;
-        bar.style.width = pct + '%';
-    };
-    scroller.addEventListener('scroll', handler);
-}
-
-// ─── 2. Typing animation ──────────────────────────────
-function initTypingAnimation() {
-    const target = document.getElementById('typedTitle');
-    if (!target || target.dataset.typed) return;
-    target.dataset.typed = '1';
-    const text  = '// Early Access Developer';
-    let i = 0;
-    target.textContent = '';
-    const interval = setInterval(() => {
-        target.textContent += text[i++];
-        if (i >= text.length) clearInterval(interval);
-    }, 55);
 }
 
 // ─── 3. Keycap popup logic (with animated counter) ───
@@ -154,12 +124,10 @@ function initKeycaps() {
     keys.forEach(k => {
         const lang    = k.dataset.lang || '';
         const pctVal  = parseInt(k.dataset.pct) || 0;
-        const col     = k.dataset.col  || '#888';
         const desc    = k.dataset.desc || '';
 
         const popup = document.createElement('div');
         popup.className = 'kc-popup';
-        popup.style.setProperty('--kc-col', col);
         popup.innerHTML =
             '<div class="kc-popup-head">' +
                 '<span>' + lang + '</span>' +
@@ -372,3 +340,104 @@ function initKeycaps() {
     requestAnimationFrame(loop);
 })();
 
+
+// ─── Cursor as a light source ─────────────────────────
+// Every [data-cast] element gets shadow vars (--sx, --sy, --sb) pointing AWAY
+// from the cursor, plus --bx/--by (cursor position inside the element) for highlights.
+(function () {
+    const orb   = document.querySelector('.light-orb');
+    const items = Array.from(document.querySelectorAll('[data-cast]'));
+    if (!items.length) return;
+
+    let tx = window.innerWidth * 0.3, ty = window.innerHeight * 0.2; // target (cursor)
+    let x = tx, y = ty;                                              // smoothed light position
+    let raf = null;
+
+    function update() {
+        x += (tx - x) * 0.2;
+        y += (ty - y) * 0.2;
+
+        document.documentElement.style.setProperty('--lx', x.toFixed(1) + 'px');
+        document.documentElement.style.setProperty('--ly', y.toFixed(1) + 'px');
+
+        if (orb) orb.style.transform =
+            'translate3d(' + (x - orb.offsetWidth / 2) + 'px,' + (y - orb.offsetHeight / 2) + 'px,0)';
+
+        for (const el of items) {
+            const r  = el.getBoundingClientRect();
+            const dx = (r.left + r.width / 2) - x;
+            const dy = (r.top + r.height / 2) - y;
+            const dist  = Math.hypot(dx, dy) || 1;
+            const depth = parseFloat(el.dataset.cast) || 1;
+            const len   = Math.min(3 + dist * 0.03, 22) * depth; // farther light → longer shadow
+
+            el.style.setProperty('--sx', (dx / dist * len).toFixed(2) + 'px');
+            el.style.setProperty('--sy', (dy / dist * len).toFixed(2) + 'px');
+            el.style.setProperty('--sb', (len * 1.1 + 2).toFixed(2) + 'px');
+            el.style.setProperty('--bx', (x - r.left).toFixed(1) + 'px');
+            el.style.setProperty('--by', (y - r.top).toFixed(1) + 'px');
+        }
+
+        raf = (Math.abs(tx - x) > 0.3 || Math.abs(ty - y) > 0.3)
+            ? requestAnimationFrame(update) : null;
+    }
+
+    function kick() { if (!raf) raf = requestAnimationFrame(update); }
+
+    function move(e) { tx = e.clientX; ty = e.clientY; kick(); }
+    window.addEventListener('pointermove', move, { passive: true });
+    window.addEventListener('pointerdown', move, { passive: true });
+    window.addEventListener('resize', kick);
+
+    update(); // initial paint with default light position
+})();
+
+// ─── Light pull cord ──────────────────────────────────
+(function () {
+    const cord   = document.getElementById('pullCord');
+    const handle = document.getElementById('cordHandle');
+    const hint   = document.getElementById('lightHint');
+    const close  = document.getElementById('hintClose');
+    if (!cord || !handle) return;
+
+    const MAX_PULL = 60, TRIGGER = 22;
+    let dragging = false, moved = false, startY = 0, pull = 0;
+
+    function setPull(v) { cord.style.setProperty('--pull', v + 'px'); }
+    function hideHint() { if (hint) hint.classList.add('hide'); }
+    function toggleLights() {
+        const on = document.body.classList.toggle('lights-on');
+        handle.setAttribute('aria-pressed', on);
+        hideHint();
+    }
+    function tug() { setPull(16); setTimeout(() => setPull(0), 130); }
+
+    handle.addEventListener('pointerdown', e => {
+        dragging = true; moved = false; startY = e.clientY; pull = 0;
+        cord.classList.add('dragging');
+        handle.setPointerCapture(e.pointerId);
+        e.preventDefault();
+    });
+    handle.addEventListener('pointermove', e => {
+        if (!dragging) return;
+        pull = Math.max(0, Math.min(MAX_PULL, e.clientY - startY));
+        if (pull > 3) moved = true;
+        setPull(pull);
+    });
+    handle.addEventListener('pointerup', () => {
+        if (!dragging) return;
+        dragging = false;
+        cord.classList.remove('dragging');
+        if (!moved)               { tug(); toggleLights(); }   // simple tap/click
+        else if (pull >= TRIGGER) { setPull(0); toggleLights(); } // proper pull
+        else                      { setPull(0); }
+    });
+    handle.addEventListener('pointercancel', () => {
+        dragging = false; cord.classList.remove('dragging'); setPull(0);
+    });
+    handle.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tug(); toggleLights(); }
+    });
+
+    if (close) close.addEventListener('click', hideHint);
+})();

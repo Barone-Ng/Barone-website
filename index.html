@@ -4,265 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Bao's Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="design.css">
 </head>
 <body>
-    <div class="card">
-        <h1>Hi, <em class="orange">I'm Bao!</em></h1>
-        <p>This is where I showcase my projects and fun stuff</p>
-
-        <div class="button-group">
-            <button id="btn1">Info</button>
-            <button id="btn2">Projects</button>
-            <button id="btn3">Fun stuff</button>
+    <div class="card" id="card" data-cast="2.2">
+        <div class="card-top">
+            <span class="card-eyebrow" data-cast="0.7">Portfolio &middot; 2026</span>
+            <span class="card-status" data-cast="0.7"><span class="card-dot"></span>Online</span>
         </div>
+
+        <div class="card-main">
+            <h1 data-cast="1.3">Hi,<br><em class="orange">I'm Bao!</em></h1>
+            <p data-cast="0.6">This is where I showcase my projects and fun stuff</p>
+
+            <div class="button-group">
+                <button id="btn1" data-cast="1.2"><span class="b-num">01</span>Info<span class="b-arrow">&#8599;</span></button>
+                <button id="btn2" data-cast="1.2"><span class="b-num">02</span>Projects<span class="b-arrow">&#8599;</span></button>
+                <button id="btn3" data-cast="1.2"><span class="b-num">03</span>Fun stuff<span class="b-arrow">&#8599;</span></button>
+            </div>
+        </div>
+
+        <div class="card-foot">Move your cursor &mdash; it's a light</div>
 
         <!-- POPUP 1 - Info -->
         <div class="popup" id="popup1">
             <div class="popup-content popup-info" id="infoScroll">
-                <div class="scroll-progress-bar" id="scrollProgressBar"></div>
                 <button class="close-btn close-btn-info" aria-label="Close">
                     <svg class="close-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="close-ring" cx="20" cy="20" r="17" fill="none" stroke-width="2"/>
-                        <line class="close-line" x1="13" y1="13" x2="27" y2="27" stroke-width="2.5" stroke-linecap="round"/>
-                        <line class="close-line" x1="27" y1="13" x2="13" y2="27" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle class="close-ring" cx="20" cy="20" r="17" fill="none" stroke-width="1.5"/>
+                        <line class="close-line" x1="14" y1="14" x2="26" y2="26" stroke-width="1.5" stroke-linecap="round"/>
+                        <line class="close-line" x1="26" y1="14" x2="14" y2="26" stroke-width="1.5" stroke-linecap="round"/>
                     </svg>
                 </button>
 
-                <!-- Header banner -->
                 <div class="info-header">
-                    <img src="Bao.jpg" alt="Avatar" class="info-avatar">
-                    <h2 class="info-name">Bao Nguyen</h2>
-                    <p class="info-title"><span id="typedTitle"></span><span class="typed-cursor">|</span></p>
-                    <div class="info-status">
-                        <span class="status-dot"></span>
-                        Online
+                    <div class="info-eyebrow">Info</div>
+                    <div class="info-id">
+                        <h2 class="info-name">Bao <em>Nguyen</em></h2>
+                        <div class="info-title">Early Access Developer</div>
+                        <div class="info-status"><span class="status-dot"></span>Online</div>
                     </div>
+                    <img src="Bao.jpg" alt="Bao" class="info-avatar">
                 </div>
 
-                <!-- Body -->
                 <div class="info-body">
 
-                    <!-- About -->
                     <div class="info-section">
-                        <div class="section-header">About <span class="section-line"></span></div>
-                        <div class="info-row border-bottom">
-                            <span class="info-label">Full name</span>
-                            <span class="info-value">Bao Nguyen</span>
-                        </div>
-                        <div class="info-row border-bottom">
-                            <span class="info-label">Date of birth</span>
-                            <span class="info-value">Jan 22, 2004</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Temporary Location:</span>
-                            <span class="info-value">Orlando, Florida, US</span>
+                        <h3 class="section-header"><span class="section-num">01</span><span class="section-title">About</span></h3>
+                        <div class="info-row"><span class="info-label">Full name</span><span class="info-value">Bao Nguyen</span></div>
+                        <div class="info-row"><span class="info-label">Date of birth</span><span class="info-value">Jan 22, 2004</span></div>
+                        <div class="info-row"><span class="info-label">Temporary location</span><span class="info-value">Orlando, Florida, US</span></div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3 class="section-header"><span class="section-num">02</span><span class="section-title">Spoken languages</span></h3>
+                        <div class="lang-list">
+                            <div class="lang"><span class="lang-name">Vietnamese</span><span class="lang-level">Native</span></div>
+                            <div class="lang"><span class="lang-name">English</span><span class="lang-level">Fluent</span></div>
                         </div>
                     </div>
 
-                    <!-- Spoken Languages -->
                     <div class="info-section">
-                        <div class="section-header">Spoken Languages <span class="section-line"></span></div>
-                        <div class="tag-row">
-                            <span class="lang-tag">
-                                &#127483;&#127475; Vietnamese
-                                <span class="lang-badge badge-native">Native</span>
-                            </span>
-                            <span class="lang-tag">
-                                &#127482;&#127480; English
-                                <span class="lang-badge badge-fluent">Fluent</span>
-                            </span>
+                        <h3 class="section-header"><span class="section-num">03</span><span class="section-title">Education</span></h3>
+                        <div class="edu-row">
+                            <div class="edu-name">University of Central Florida</div>
+                            <div class="edu-sub">UCF &mdash; Computer Science</div>
+                        </div>
+                        <div class="edu-row">
+                            <div class="edu-name">Valencia College</div>
+                            <div class="edu-sub">Associate of Arts</div>
                         </div>
                     </div>
 
-                    <!-- Education -->
                     <div class="info-section">
-                        <div class="section-header">Education <span class="section-line"></span></div>
-                        <div class="edu-row border-bottom">
-                            <div class="edu-icon">&#127963;&#65039;</div>
-                            <div>
-                                <div class="edu-name">University of Central Florida</div>
-                                <div class="edu-sub">UCF &mdash; Data Science</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Programming Languages -->
-                    <div class="info-section">
-                        <div class="section-header">Programming Languages <span class="section-line"></span></div>
-
+                        <h3 class="section-header"><span class="section-num">04</span><span class="section-title">Programming languages</span></h3>
                         <div class="keyboard-tray">
-                            <div class="keyboard-label">// bao's stack</div>
-
-                            <!-- Row 1: Python · HTML · CSS -->
+                            <div class="keyboard-label">Stack &middot; tap a key</div>
                             <div class="key-row">
-                                <div class="keycap" data-lang="Python" data-pct="100" data-col="#ffd343" data-desc="scripting &amp; automation" style="background:#b38700;box-shadow:0 5px 0 #7a5c00,0 6px 12px rgba(0,0,0,0.4);">
-                                    <div class="kc-face" style="background:linear-gradient(145deg,#ffd343,#f0bc1a);">
-                                        <span class="kc-emoji">🐍</span>
-                                        <span class="kc-label" style="color:#3d2800;">Python</span>
-                                        <span class="kc-sub" style="color:#7a5200;">.py</span>
-                                    </div>
-                                </div>
-                                <div class="keycap" data-lang="HTML" data-pct="100" data-col="#e34c26" data-desc="markup &amp; structure" style="background:#8a2510;box-shadow:0 5px 0 #5a1008,0 6px 12px rgba(0,0,0,0.4);">
-                                    <div class="kc-face" style="background:linear-gradient(145deg,#e34c26,#c43a1a);">
-                                        <span class="kc-emoji">🌐</span>
-                                        <span class="kc-label" style="color:#ffe8e0;">HTML</span>
-                                        <span class="kc-sub" style="color:rgba(255,220,200,0.6);">.html</span>
-                                    </div>
-                                </div>
-                                <div class="keycap" data-lang="CSS" data-pct="100" data-col="#4a90d9" data-desc="styling &amp; layout" style="background:#14318a;box-shadow:0 5px 0 #0c1f5e,0 6px 12px rgba(0,0,0,0.4);">
-                                    <div class="kc-face" style="background:linear-gradient(145deg,#3b5ce4,#264de4);">
-                                        <span class="kc-emoji">🎨</span>
-                                        <span class="kc-label" style="color:#e0eaff;">CSS</span>
-                                        <span class="kc-sub" style="color:rgba(180,200,255,0.6);">.css</span>
-                                    </div>
-                                </div>
+                                <div class="keycap" data-lang="Python" data-pct="100" data-desc="scripting &amp; automation"><div class="kc-face"><span class="kc-label">Python</span><span class="kc-sub">.py</span></div></div>
+                                <div class="keycap" data-lang="HTML" data-pct="100" data-desc="markup &amp; structure"><div class="kc-face"><span class="kc-label">HTML</span><span class="kc-sub">.html</span></div></div>
+                                <div class="keycap" data-lang="CSS" data-pct="100" data-desc="styling &amp; layout"><div class="kc-face"><span class="kc-label">CSS</span><span class="kc-sub">.css</span></div></div>
                             </div>
-
-                            <!-- Row 2: C++ · JS · TS -->
                             <div class="key-row key-row-offset">
-                                <div class="keycap" data-lang="C++" data-pct="95" data-col="#6ab0f5" data-desc="systems &amp; algorithms" style="background:#003d6e;box-shadow:0 5px 0 #002244,0 6px 12px rgba(0,0,0,0.4);">
-                                    <div class="kc-face" style="background:linear-gradient(145deg,#0077cc,#00599c);">
-                                        <span class="kc-emoji">⚙️</span>
-                                        <span class="kc-label" style="color:#cce8ff;">C++</span>
-                                        <span class="kc-sub" style="color:rgba(150,210,255,0.6);">.cpp</span>
-                                    </div>
-                                </div>
-                                <div class="keycap" data-lang="JavaScript" data-pct="80" data-col="#f7df1e" data-desc="web interactivity" style="background:#7a6200;box-shadow:0 5px 0 #4a3a00,0 6px 12px rgba(0,0,0,0.4);">
-                                    <div class="kc-face" style="background:linear-gradient(145deg,#f7df1e,#e8cc00);">
-                                        <span class="kc-emoji">☕</span>
-                                        <span class="kc-label" style="color:#2d2200;">JS</span>
-                                        <span class="kc-sub" style="color:rgba(80,60,0,0.5);">.js</span>
-                                    </div>
-                                </div>
-                                <div class="keycap" data-lang="TypeScript" data-pct="50" data-col="#4a90d9" data-desc="typed JS &amp; safety" style="background:#1a3d6e;box-shadow:0 5px 0 #0e2444,0 6px 12px rgba(0,0,0,0.4);">
-                                    <div class="kc-face" style="background:linear-gradient(145deg,#4a90d9,#3178c6);">
-                                        <svg width="20" height="20" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="border-radius:4px;flex-shrink:0;margin-bottom:2px;">
-                                            <rect width="400" height="400" rx="40" fill="rgba(255,255,255,0.15)"/>
-                                            <path d="M87.7 242.3v-23.6h96.6v23.6H148v117.4h-24.1V242.3H87.7zm128.4-23.6h27.3l32.7 52.8 32.7-52.8H336l-48.7 74.4 52.1 79.7h-27.7l-35.3-56.7-35.1 56.7h-27.5l52.3-79.7-50-74.4z" fill="white"/>
-                                        </svg>
-                                        <span class="kc-label" style="color:#e0f0ff;">TypeScript</span>
-                                        <span class="kc-sub" style="color:rgba(180,220,255,0.6);">.ts</span>
-                                    </div>
-                                </div>
+                                <div class="keycap" data-lang="C++" data-pct="95" data-desc="systems &amp; algorithms"><div class="kc-face"><span class="kc-label">C++</span><span class="kc-sub">.cpp</span></div></div>
+                                <div class="keycap" data-lang="JavaScript" data-pct="80" data-desc="web interactivity"><div class="kc-face"><span class="kc-label">JS</span><span class="kc-sub">.js</span></div></div>
+                                <div class="keycap" data-lang="TypeScript" data-pct="50" data-desc="typed JS &amp; safety"><div class="kc-face"><span class="kc-label">TS</span><span class="kc-sub">.ts</span></div></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Interests -->
                     <div class="info-section">
-                        <div class="section-header">Interests <span class="section-line"></span></div>
+                        <h3 class="section-header"><span class="section-num">05</span><span class="section-title">Interests</span></h3>
 
-                        <!-- Row 1: Gaming (wide) + J-Pop (narrow) -->
-                        <div class="ib-grid ib-mb">
-                            <div class="ib ib-gaming">
-                                <div class="ib-emoji">🎮</div>
-                                <div class="ib-label" style="color:#e2d9ff;">Gaming</div>
-                                <div class="ib-sub" style="color:#b8a8ff;">Elden Ring</div>
-                                <div class="ib-dots">
-                                    <div class="ib-dot"></div>
-                                    <div class="ib-dot"></div>
-                                    <div class="ib-dot"></div>
-                                </div>
-                            </div>
+                        <div class="ib-grid">
+                            <div class="ib ib-gaming"><div class="ib-label">Gaming</div><div class="ib-sub">Elden Ring</div></div>
+                            <div class="ib ib-otters"><img src="otter.jpg" alt="Otter"><div class="ib-caption">Otters!!!!</div></div>
+                            <div class="ib ib-webdev"><div class="ib-label">Web dev</div><div class="ib-sub">The magic to build everything from my imagination</div></div>
                         </div>
 
-                        <!-- Now Playing widget -->
-                        <div class="now-playing ib-mb">
-                            <img src="Vivarium.jpg" alt="Album Art" class="np-album">
+                        <div class="now-playing">
+                            <img src="Vivarium.jpg" alt="Album art" class="np-album">
                             <div class="np-info">
-                                <div class="np-badge">▶ NOW PLAYING</div>
+                                <div class="np-badge">Now playing</div>
                                 <div class="np-song">Vivarium</div>
                                 <div class="np-artist">ADO</div>
                             </div>
-                            <div class="np-bars">
-                                <div class="np-bar"></div>
-                                <div class="np-bar"></div>
-                                <div class="np-bar"></div>
-                                <div class="np-bar"></div>
-                                <div class="np-bar"></div>
-                            </div>
+                            <div class="np-bars"><div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div></div>
                         </div>
 
-                        <!-- Row 2: Otters (narrow) + Web Dev (wide) -->
-                        <div class="ib-grid ib-grid-4060 ib-mb">
-                            <div class="ib ib-otters">
-                                <img src="otter.jpg" alt="Otter" class="ib-otter-svg" style="width:64px;height:64px;object-fit:cover;border-radius:50%;">
-                                <div class="ib-label" style="color:#6b3a10;">OTTERS!!!!</div>
-                                <div class="ib-sub" style="color:#a06030;">🤎</div>
-                            </div>
-                            <div class="ib ib-webdev">
-                                <div class="ib-emoji">💻</div>
-                                <div class="ib-label" style="color:#86efac;">Web Dev</div>
-                                <div class="ib-sub" style="color:#4ade80;"># The magic the build everything from my imagination #</div>
-                                <span class="ib-cursor"></span>
-                            </div>
-                        </div>
-
-                        <!-- Row 3: Night Coding + Game Coding (equal) -->
-                        <div class="ib-grid ib-grid-5050">
-                            <div class="ib ib-night">
-                                <div class="ib-stars"></div>
-                                <div class="ib-emoji">🌙</div>
-                                <div class="ib-label" style="color:#c7d2fe;">Night Reading
-                                </div>
-                                <div class="ib-sub" style="color:#818cf8;"></div>
-                            </div>
-                            <div class="ib ib-gamecoding">
-                                <div class="ib-emoji">🕹️</div>
-                                <div class="ib-label" style="color:#f5d0fe;">Game Development</div>
-                                <div class="ib-sub" style="color:#d946ef;">Develop logical thinking and problem-solving skills</div>
-                                <div class="ib-pixels">
-                                    <div style="background:#e040fb;"></div>
-                                    <div style="background:#e040fb;"></div>
-                                    <div style="background:transparent;"></div>
-                                    <div style="background:#e040fb;"></div>
-                                    <div style="background:#e040fb;"></div>
-                                    <div style="background:#e040fb;"></div>
-                                    <div style="background:transparent;"></div>
-                                    <div style="background:#e040fb;"></div>
-                                    <div style="background:transparent;"></div>
-                                </div>
-                            </div>
+                        <div class="ib-grid ib-grid-half">
+                            <div class="ib"><div class="ib-label">Night reading</div></div>
+                            <div class="ib"><div class="ib-label">Game development</div><div class="ib-sub">Develop logical thinking and problem-solving skills</div></div>
                         </div>
                     </div>
 
-                    <!-- Social -->
                     <div class="info-section">
-                        <div class="section-header">Social <span class="section-line"></span></div>
+                        <h3 class="section-header"><span class="section-num">06</span><span class="section-title">Social</span></h3>
                         <a href="https://github.com/Barone-Ng" target="_blank" class="social-link">
-                            <div class="social-icon" style="background:#1a1a1a;">
-                                <svg width="17" height="17" viewBox="0 0 16 16" fill="#fff"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                            </div>
-                            <div class="social-text">
-                                <div class="social-name">GitHub</div>
-                                <div class="social-handle">@Barone-Ng</div>
-                            </div>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                            <span class="social-text"><span class="social-name">GitHub</span><span class="social-handle">@Barone-Ng</span></span>
                             <span class="social-arrow">&#8599;</span>
                         </a>
-
-                        <a href="https://www.instagram.com/itsmebarone/" target="_blank" class="social-link social-link-mt">
-                            <div class="social-icon" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg>
-                            </div>
-                            <div class="social-text">
-                                <div class="social-name">Instagram</div>
-                                <div class="social-handle">@itsmebarone</div>
-                            </div>
+                        <a href="https://www.instagram.com/itsmebarone/" target="_blank" class="social-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                            <span class="social-text"><span class="social-name">Instagram</span><span class="social-handle">@itsmebarone</span></span>
                             <span class="social-arrow">&#8599;</span>
                         </a>
-
-                        <a href="mailto:baronenguyen2201@gmail.com" class="social-link social-link-mt">
-                            <div class="social-icon" style="background:#4CAF50;">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                            </div>
-                            <div class="social-text">
-                                <div class="social-name">Email</div>
-                                <div class="social-handle">baronenguyen2201@gmail.com</div>
-                            </div>
+                        <a href="mailto:baronenguyen2201@gmail.com" class="social-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <span class="social-text"><span class="social-name">Email</span><span class="social-handle">baronenguyen2201@gmail.com</span></span>
                             <span class="social-arrow">&#8599;</span>
                         </a>
-
                     </div>
 
                 </div>
@@ -284,16 +159,37 @@
                 <span class="close-btn">&times;</span>
                 <h3>Fun stuff</h3>
                 <div class="fun-grid">
-                    <a class="fun-btn" href="LightOut.html"><span class="fun-icon">💡</span><span class="fun-label">Lights Out</span><span class="fun-arrow">↗</span></a>
-                    <a class="fun-btn" href="Tictactoe.html"><span class="fun-icon">❌</span><span class="fun-label">Tic-Tac-Toe</span><span class="fun-arrow">↗</span></a>
-                    <a class="fun-btn" href="MemoryMatch.html"><span class="fun-icon">🧠</span><span class="fun-label">Love Match</span><span class="fun-arrow">↗</span></a>
-                    <a class="fun-btn" href="Slotmachine.html"><span class="fun-icon">🎰</span><span class="fun-label">Galaxy Slots</span><span class="fun-arrow">↗</span></a>
-                    <a class="fun-btn" href="Wordle.html"><span class="fun-icon">🟩</span><span class="fun-label">Wordle</span><span class="fun-arrow">↗</span></a>
-                    <a class="fun-btn" href="WordSniper.html"><span class="fun-icon">🕵️</span><span class="fun-label">Word Sniper</span><span class="fun-arrow">↗</span></a>
+                    <a class="fun-btn" href="LightOut.html"><span class="fun-icon">01</span><span class="fun-label">Lights Out</span><span class="fun-arrow">↗</span></a>
+                    <a class="fun-btn" href="Tictactoe.html"><span class="fun-icon">02</span><span class="fun-label">Tic-Tac-Toe</span><span class="fun-arrow">↗</span></a>
+                    <a class="fun-btn" href="MemoryMatch.html"><span class="fun-icon">03</span><span class="fun-label">Love Match</span><span class="fun-arrow">↗</span></a>
+                    <a class="fun-btn" href="Slotmachine.html"><span class="fun-icon">04</span><span class="fun-label">Galaxy Slots</span><span class="fun-arrow">↗</span></a>
+                    <a class="fun-btn" href="Wordle.html"><span class="fun-icon">05</span><span class="fun-label">Wordle</span><span class="fun-arrow">↗</span></a>
+                    <a class="fun-btn" href="WordSniper.html"><span class="fun-icon">06</span><span class="fun-label">Word Sniper</span><span class="fun-arrow">↗</span></a>
+                    <a class="fun-btn" href="Arcane Bloom.html"><span class="fun-icon">07</span><span class="fun-label">Arcane Bloom</span><span class="fun-arrow">↗</span></a>
                 </div>
             </div>
         </div>
 
+    </div>
+
+    <!-- Cursor light -->
+    <div class="light-orb"></div>
+
+    <!-- Darkness: hides everything except where the cursor shines -->
+    <div class="darkness"></div>
+
+    <!-- Light pull cord (top right) -->
+    <div class="pull-cord" id="pullCord">
+        <div class="cord-fixture"></div>
+        <div class="cord-line"></div>
+        <div class="cord-handle" id="cordHandle" data-cast="0.8" role="button" tabindex="0" aria-label="Pull the cord to toggle the lights"></div>
+    </div>
+
+    <!-- Hint popup -->
+    <div class="hint" id="lightHint" role="dialog" aria-label="Hint">
+        <div class="hint-eyebrow">It's dark in here</div>
+        <p>Use your cursor as a flashlight and find the light cord hanging somewhere, then give it a pull </p>
+        <button id="hintClose" type="button">Got it</button>
     </div>
 
     <!-- Shooting Star -->
