@@ -107,7 +107,7 @@ function initKeycaps() {
         if (triggered) return;
         const ref = keys[0];
         if (!ref) return;
-        const scrollEl = ref.closest('.popup-info');
+        const scrollEl = ref.closest('.info-scroll');
         const rect = ref.getBoundingClientRect();
         const viewH = scrollEl ? scrollEl.getBoundingClientRect().bottom : window.innerHeight;
         if (rect.top < viewH - 10) {
@@ -115,7 +115,7 @@ function initKeycaps() {
             keys.forEach((k, i) => setTimeout(() => k.classList.add('popped'), i * 80));
         }
     }
-    const scrollParent = keys[0].closest('.popup-info') || window;
+    const scrollParent = keys[0].closest('.info-scroll') || window;
     scrollParent.addEventListener('scroll', popKeys);
     window.addEventListener('scroll', popKeys);
     setTimeout(popKeys, 350);
