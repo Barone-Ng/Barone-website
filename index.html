@@ -31,117 +31,128 @@
     </div>
 
     <!-- Popups live outside the card so they sit on the top layer -->
-    <!-- POPUP 1 - Info -->
+    <!-- POPUP 1 - Info (two cards: fixed top + scrollable bottom) -->
     <div class="popup" id="popup1">
         <div class="popup-content popup-info" id="infoScroll">
-            <button class="close-btn close-btn-info" aria-label="Close">
-                <svg class="close-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                    <circle class="close-ring" cx="20" cy="20" r="17" fill="none" stroke-width="1.5"/>
-                    <line class="close-line" x1="14" y1="14" x2="26" y2="26" stroke-width="1.5" stroke-linecap="round"/>
-                    <line class="close-line" x1="26" y1="14" x2="14" y2="26" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-            </button>
 
-            <div class="info-header">
-                <div class="info-eyebrow">Info</div>
-                <div class="info-id">
-                    <h2 class="info-name">Bao <em>Nguyen</em></h2>
-                    <div class="info-title">Early Access Developer</div>
-                    <div class="info-status"><span class="status-dot"></span>Online</div>
+            <!-- CARD 1: fixed (photo, name, About) -->
+            <div class="info-card info-card-top">
+                <button class="close-btn close-btn-info" aria-label="Close">
+                    <svg class="close-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="close-ring" cx="20" cy="20" r="17" fill="none" stroke-width="1.5"/>
+                        <line class="close-line" x1="14" y1="14" x2="26" y2="26" stroke-width="1.5" stroke-linecap="round"/>
+                        <line class="close-line" x1="26" y1="14" x2="14" y2="26" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
+
+                <div class="info-header">
+                    <div class="info-eyebrow">Info</div>
+                    <div class="info-id">
+                        <h2 class="info-name">Bao <em>Nguyen</em></h2>
+                        <div class="info-title">Early Access Developer</div>
+                        <div class="info-status"><span class="status-dot"></span>Online</div>
+                    </div>
+                    <img src="Bao.jpg" alt="Bao" class="info-avatar">
                 </div>
-                <img src="Bao.jpg" alt="Bao" class="info-avatar">
+
+                <div class="info-body">
+                    <div class="info-section">
+                        <h3 class="section-header"><span class="section-num">01</span><span class="section-title">About</span></h3>
+                        <div class="info-row"><span class="info-label">Full name</span><span class="info-value">Bao Nguyen</span></div>
+                        <div class="info-row"><span class="info-label">Date of birth</span><span class="info-value">Jan 22, 2004</span></div>
+                        <div class="info-row"><span class="info-label">Temporary location</span><span class="info-value">Orlando, Florida, US</span></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="info-body">
+            <!-- CARD 2: scrollable (everything else) -->
+            <div class="info-card info-scroll">
+                <div class="info-body">
 
-                <div class="info-section">
-                    <h3 class="section-header"><span class="section-num">01</span><span class="section-title">About</span></h3>
-                    <div class="info-row"><span class="info-label">Full name</span><span class="info-value">Bao Nguyen</span></div>
-                    <div class="info-row"><span class="info-label">Date of birth</span><span class="info-value">Jan 22, 2004</span></div>
-                    <div class="info-row"><span class="info-label">Temporary location</span><span class="info-value">Orlando, Florida, US</span></div>
-                </div>
-
-                <div class="info-section">
-                    <h3 class="section-header"><span class="section-num">02</span><span class="section-title">Spoken languages</span></h3>
-                    <div class="lang-list">
-                        <div class="lang"><span class="lang-name">Vietnamese</span><span class="lang-level">Native</span></div>
-                        <div class="lang"><span class="lang-name">English</span><span class="lang-level">Fluent</span></div>
-                    </div>
-                </div>
-
-                <div class="info-section">
-                    <h3 class="section-header"><span class="section-num">03</span><span class="section-title">Education</span></h3>
-                    <div class="edu-row">
-                        <div class="edu-name">University of Central Florida</div>
-                        <div class="edu-sub">UCF &mdash; Computer Science</div>
-                    </div>
-                    <div class="edu-row">
-                        <div class="edu-name">Valencia College</div>
-                        <div class="edu-sub">Associate of Arts</div>
-                    </div>
-                </div>
-
-                <div class="info-section">
-                    <h3 class="section-header"><span class="section-num">04</span><span class="section-title">Programming languages</span></h3>
-                    <div class="keyboard-tray">
-                        <div class="keyboard-label">Stack &middot; tap a key</div>
-                        <div class="key-row">
-                            <div class="keycap" data-lang="Python" data-pct="100" data-desc="scripting &amp; automation"><div class="kc-face"><span class="kc-label">Python</span><span class="kc-sub">.py</span></div></div>
-                            <div class="keycap" data-lang="HTML" data-pct="100" data-desc="markup &amp; structure"><div class="kc-face"><span class="kc-label">HTML</span><span class="kc-sub">.html</span></div></div>
-                            <div class="keycap" data-lang="CSS" data-pct="100" data-desc="styling &amp; layout"><div class="kc-face"><span class="kc-label">CSS</span><span class="kc-sub">.css</span></div></div>
-                        </div>
-                        <div class="key-row key-row-offset">
-                            <div class="keycap" data-lang="C++" data-pct="95" data-desc="systems &amp; algorithms"><div class="kc-face"><span class="kc-label">C++</span><span class="kc-sub">.cpp</span></div></div>
-                            <div class="keycap" data-lang="JavaScript" data-pct="80" data-desc="web interactivity"><div class="kc-face"><span class="kc-label">JS</span><span class="kc-sub">.js</span></div></div>
-                            <div class="keycap" data-lang="TypeScript" data-pct="50" data-desc="typed JS &amp; safety"><div class="kc-face"><span class="kc-label">TS</span><span class="kc-sub">.ts</span></div></div>
+                    <div class="info-section">
+                        <h3 class="section-header"><span class="section-num">02</span><span class="section-title">Spoken languages</span></h3>
+                        <div class="lang-list">
+                            <div class="lang"><span class="lang-name">Vietnamese</span><span class="lang-level">Native</span></div>
+                            <div class="lang"><span class="lang-name">English</span><span class="lang-level">Fluent</span></div>
+                            <div class="lang"><span class="lang-name">Japanese</span><span class="lang-level">Kindergarten level</span></div>
+                            <div class="lang"><span class="lang-name">Chinese</span><span class="lang-level">Kindergarten level</span></div>
                         </div>
                     </div>
-                </div>
 
-                <div class="info-section">
-                    <h3 class="section-header"><span class="section-num">05</span><span class="section-title">Interests</span></h3>
-
-                    <div class="ib-grid">
-                        <div class="ib ib-gaming"><div class="ib-label">Gaming</div><div class="ib-sub">Elden Ring</div></div>
-                        <div class="ib ib-otters"><img src="otter.jpg" alt="Otter"><div class="ib-caption">Otters!!!!</div></div>
-                        <div class="ib ib-webdev"><div class="ib-label">Web dev</div><div class="ib-sub">The magic to build everything from my imagination</div></div>
-                    </div>
-
-                    <div class="now-playing">
-                        <img src="Vivarium.jpg" alt="Album art" class="np-album">
-                        <div class="np-info">
-                            <div class="np-badge">Now playing</div>
-                            <div class="np-song">Vivarium</div>
-                            <div class="np-artist">ADO</div>
+                    <div class="info-section">
+                        <h3 class="section-header"><span class="section-num">03</span><span class="section-title">Education</span></h3>
+                        <div class="edu-row">
+                            <div class="edu-name">University of Central Florida</div>
+                            <div class="edu-sub">UCF &mdash; Computer Science</div>
                         </div>
-                        <div class="np-bars"><div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div></div>
+                        <div class="edu-row">
+                            <div class="edu-name">Valencia College</div>
+                            <div class="edu-sub">Associate of Arts</div>
+                        </div>
                     </div>
 
-                    <div class="ib-grid ib-grid-half">
-                        <div class="ib"><div class="ib-label">Night reading</div></div>
-                        <div class="ib"><div class="ib-label">Game development</div><div class="ib-sub">Develop logical thinking and problem-solving skills</div></div>
+                    <div class="info-section">
+                        <h3 class="section-header"><span class="section-num">04</span><span class="section-title">Programming languages</span></h3>
+                        <div class="keyboard-tray">
+                            <div class="keyboard-label">Stack &middot; tap a key</div>
+                            <div class="key-row">
+                                <div class="keycap" data-lang="Python" data-pct="100" data-desc="scripting &amp; automation"><div class="kc-face"><span class="kc-label">Python</span><span class="kc-sub">.py</span></div></div>
+                                <div class="keycap" data-lang="HTML" data-pct="100" data-desc="markup &amp; structure"><div class="kc-face"><span class="kc-label">HTML</span><span class="kc-sub">.html</span></div></div>
+                                <div class="keycap" data-lang="CSS" data-pct="100" data-desc="styling &amp; layout"><div class="kc-face"><span class="kc-label">CSS</span><span class="kc-sub">.css</span></div></div>
+                            </div>
+                            <div class="key-row key-row-offset">
+                                <div class="keycap" data-lang="C++" data-pct="95" data-desc="systems &amp; algorithms"><div class="kc-face"><span class="kc-label">C++</span><span class="kc-sub">.cpp</span></div></div>
+                                <div class="keycap" data-lang="JavaScript" data-pct="80" data-desc="web interactivity"><div class="kc-face"><span class="kc-label">JS</span><span class="kc-sub">.js</span></div></div>
+                                <div class="keycap" data-lang="TypeScript" data-pct="50" data-desc="typed JS &amp; safety"><div class="kc-face"><span class="kc-label">TS</span><span class="kc-sub">.ts</span></div></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="info-section">
-                    <h3 class="section-header"><span class="section-num">06</span><span class="section-title">Social</span></h3>
-                    <a href="https://github.com/Barone-Ng" target="_blank" class="social-link">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                        <span class="social-text"><span class="social-name">GitHub</span><span class="social-handle">@Barone-Ng</span></span>
-                        <span class="social-arrow">&#8599;</span>
-                    </a>
-                    <a href="https://www.instagram.com/itsmebarone/" target="_blank" class="social-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-                        <span class="social-text"><span class="social-name">Instagram</span><span class="social-handle">@itsmebarone</span></span>
-                        <span class="social-arrow">&#8599;</span>
-                    </a>
-                    <a href="mailto:baronenguyen2201@gmail.com" class="social-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        <span class="social-text"><span class="social-name">Email</span><span class="social-handle">baronenguyen2201@gmail.com</span></span>
-                        <span class="social-arrow">&#8599;</span>
-                    </a>
-                </div>
+                    <div class="info-section">
+                        <h3 class="section-header"><span class="section-num">05</span><span class="section-title">Interests</span></h3>
 
+                        <div class="ib-grid">
+                            <div class="ib ib-gaming"><div class="ib-label">Gaming</div><div class="ib-sub">Elden Ring</div></div>
+                            <div class="ib ib-otters"><img src="otter.jpg" alt="Otter"><div class="ib-caption">Otters!!!!</div></div>
+                            <div class="ib ib-webdev"><div class="ib-label">Web dev</div><div class="ib-sub">The magic to build everything from my imagination</div></div>
+                        </div>
+
+                        <div class="now-playing">
+                            <img src="Vivarium.jpg" alt="Album art" class="np-album">
+                            <div class="np-info">
+                                <div class="np-badge">Now playing</div>
+                                <div class="np-song">Vivarium</div>
+                                <div class="np-artist">ADO</div>
+                            </div>
+                            <div class="np-bars"><div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div><div class="np-bar"></div></div>
+                        </div>
+
+                        <div class="ib-grid ib-grid-half">
+                            <div class="ib"><div class="ib-label">Night reading</div></div>
+                            <div class="ib"><div class="ib-label">Game development</div><div class="ib-sub">Develop logical thinking and problem-solving skills</div></div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3 class="section-header"><span class="section-num">06</span><span class="section-title">Social</span></h3>
+                        <a href="https://github.com/Barone-Ng" target="_blank" class="social-link">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                            <span class="social-text"><span class="social-name">GitHub</span><span class="social-handle">@Barone-Ng</span></span>
+                            <span class="social-arrow">&#8599;</span>
+                        </a>
+                        <a href="https://www.instagram.com/itsmebarone/" target="_blank" class="social-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                            <span class="social-text"><span class="social-name">Instagram</span><span class="social-handle">@itsmebarone</span></span>
+                            <span class="social-arrow">&#8599;</span>
+                        </a>
+                        <a href="mailto:baronenguyen2201@gmail.com" class="social-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <span class="social-text"><span class="social-name">Email</span><span class="social-handle">baronenguyen2201@gmail.com</span></span>
+                            <span class="social-arrow">&#8599;</span>
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
