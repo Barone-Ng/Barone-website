@@ -986,3 +986,32 @@ body:not(.dark) .card:hover {
         inset 0 1px 0 rgba(255,255,255,0.18),
         var(--sx, 0px) calc(var(--sy, 0px) + 18px) calc(var(--sb, 30px) * 1.5) calc(var(--sb, 30px) * -0.2) rgba(var(--sh), calc(0.5 * var(--si)));
 }
+
+
+/* ═══ Info tab: two cards (fixed top + scrollable bottom) ═══ */
+.popup .popup-info {
+    display: flex; flex-direction: column; gap: 10px;
+    overflow: visible; touch-action: auto;
+    background: transparent; border: none; box-shadow: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    max-height: 88vh; max-height: 88dvh;
+}
+.popup-info .info-card {
+    position: relative;
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 16px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 60px -30px rgba(0,0,0,0.7);
+    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+}
+.popup-info .info-card-top { flex: 0 0 auto; }
+.popup-info .info-card-top .info-header { border-bottom: 1px solid var(--rule); }
+.popup-info .info-card-top .info-eyebrow { margin-bottom: 20px; }
+.popup-info .info-card-top .info-section { border-bottom: none; padding-bottom: 14px; }
+
+.popup-info .info-scroll {
+    flex: 1 1 auto; min-height: 0;
+    overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y;
+    scrollbar-width: none; -ms-overflow-style: none;
+}
+.popup-info .info-scroll::-webkit-scrollbar { display: none; }
+.popup-info .info-scroll .info-section:first-child { padding-top: 22px; }
+.popup-info .lang-list { row-gap: 18px; }
