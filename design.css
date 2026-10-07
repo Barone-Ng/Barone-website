@@ -1016,3 +1016,24 @@ body:not(.dark) .card:hover {
 .popup-info .info-scroll::-webkit-scrollbar { display: none; }
 .popup-info .info-scroll .info-section:first-child { padding-top: 22px; }
 .popup-info .lang-list { row-gap: 18px; }
+
+/* ═══ Info tab: side by side (left fixed, right scrolls) ═══ */
+.popup .popup-info {
+    flex-direction: row;
+    width: min(94vw, 860px);
+    height: min(560px, 88vh); height: min(560px, 88dvh);
+}
+.popup-info .info-card-top {
+    flex: 0 0 340px; overflow-y: auto;
+    border-bottom: none; border-right: 1px solid var(--rule);
+    scrollbar-width: none;
+}
+.popup-info .info-card-top::-webkit-scrollbar { display: none; }
+.popup-info .info-card-top .info-header { border-bottom: 1px solid var(--rule); }
+.popup-info .info-scroll { flex: 1 1 auto; min-width: 0; height: 100%; }
+
+/* phones / narrow screens: stack again */
+@media (max-width: 700px) {
+    .popup .popup-info { flex-direction: column; width: min(94vw, 420px); height: auto; max-height: 88vh; max-height: 88dvh; }
+    .popup-info .info-card-top { flex: 0 0 auto; overflow: visible; border-right: none; border-bottom: 1px solid var(--rule); }
+}
