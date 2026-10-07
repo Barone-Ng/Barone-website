@@ -988,25 +988,26 @@ body:not(.dark) .card:hover {
 }
 
 
-/* ═══ Info tab: two cards (fixed top + scrollable bottom) ═══ */
+/* ═══ Info tab: one window, two joined sections (fixed top + scrollable bottom) ═══ */
 .popup .popup-info {
-    display: flex; flex-direction: column; gap: 10px;
-    overflow: visible; touch-action: auto;
-    background: transparent; border: none; box-shadow: none;
-    -webkit-backdrop-filter: none; backdrop-filter: none;
+    display: flex; flex-direction: column; gap: 0;
+    overflow: hidden; touch-action: auto; padding: 0;
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 16px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 40px 80px -30px rgba(0,0,0,0.8);
+    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
     max-height: 88vh; max-height: 88dvh;
 }
 .popup-info .info-card {
-    position: relative;
-    background: var(--paper); border: 1px solid var(--rule); border-radius: 16px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 60px -30px rgba(0,0,0,0.7);
-    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+    position: relative; background: transparent; border: none; border-radius: 0;
+    box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
 }
-.popup-info .info-card-top { flex: 0 0 auto; }
+/* fixed top section */
+.popup-info .info-card-top { flex: 0 0 auto; border-bottom: 1px solid var(--rule); }
 .popup-info .info-card-top .info-header { border-bottom: 1px solid var(--rule); }
 .popup-info .info-card-top .info-eyebrow { margin-bottom: 20px; }
 .popup-info .info-card-top .info-section { border-bottom: none; padding-bottom: 14px; }
 
+/* scrolling bottom section */
 .popup-info .info-scroll {
     flex: 1 1 auto; min-height: 0;
     overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y;
